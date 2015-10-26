@@ -265,6 +265,8 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
+let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
+
 " Activate vim-skeletons
 let skeletons#autoRegister = 1
 
