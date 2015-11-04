@@ -1,16 +1,21 @@
 "Required plugins:
-"pathogen
+"pathogen -- first and foremost
 "auto-pairs
 "bufexplorer
 "ctrlp.vim
+"flattown
+"fonts
 "nerdtree
-"tagbar
-"vim-airline
-"
-"optional plugins:
 "seti.vim
-
-
+"ultisnips
+"vim-airline
+"vim-bbye
+"vim-easymotion
+"vim-less
+"vim-skeletons
+"vim-snippets
+"vim-twig
+"seti.vim
 
 "You should set your console font to
 "one of patched powerline fonts
@@ -33,40 +38,6 @@ source $VIMRUNTIME/vimrc_example.vim
 set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
 set noswapfile     "no swap filese
-
-"Set options and add mapping such that Vim behaves a lot like
-"MS-Windows
-"source $VIMRUNTIME/mswin.vim
-
-"Enable the way in which you work on MS environment. Ctrl-P (copy),
-"Ctrl-V (paste).. etc.
-"behave mswin
-
-
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  let arg3 = v:fname_out
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
 
 "remove menu bar
 set guioptions-=m  
