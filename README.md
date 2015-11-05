@@ -22,8 +22,7 @@ This repository hosts my personal vim configuration and required plugins. Curren
 
 
 .vimrc file just sources config.vim file, which is located in Vim home directory along with plugins.
-This way changes can be made to config.vim, new plugins can be installed and all this changes quickly can be commited
-back to git repository, so they can be synchronized with many machines with Vim
+This way changes can be made to config.vim, new plugins can be installed or new Vim snippets can be created - every change can be quickly commited back to git repository. Thus it just takes `git pull` To synchronize configuration with another workstation.
 
 
 #Installation
