@@ -1,4 +1,4 @@
-# My personal vim configuration with plugins
+# My personal Vim setup
 
 This repository hosts my personal vim configuration and plugins that i use.
 
@@ -6,8 +6,7 @@ This repository hosts my personal vim configuration and plugins that i use.
 
 ##Unix
 ```bash
-git clone http://github.com/vitrig/vim ~/.vim
-cp ~/.vim/.vimrc ~/.vimrc
+git clone http://github.com/vitrig/.vim ~/.vim && ~/.vim/install.sh
 ```
 
 ##Windows
