@@ -113,7 +113,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeChDirMode=2
 
 
-set colorcolumn=70
+set colorcolumn=79
 
 
 "disable hightlighting when searching
@@ -166,7 +166,6 @@ nnoremap <Leader>w :w<CR>
 "Elegantly create new buffer in current
 "window like a decent modern text editor
 nnoremap <Leader>n :enew<CR>
-
 "This allows buffer to become hidden
 "when new file is created
 set hidden
@@ -190,6 +189,15 @@ map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
+
+
+let g:EasyMotion_re_line_anywhere = '\v' .
+        \       '(<.|^$)' . '|' .
+        \       '(.>|^$)' . '|' .
+        \       '(\l)\zs(\u)' . '|' .
+        \       '(_\zs.)' . '|' .
+        \       '(#\zs.)' . '|' .
+        \       "([]!\"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])"  
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
