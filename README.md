@@ -1,5 +1,5 @@
 # My personal Vim setup
-[!pic](0.png)
+![pic](0.png)
 This repository hosts my personal vim configuration and required plugins. Currently it contains following plugins:
 
 - pathogen
