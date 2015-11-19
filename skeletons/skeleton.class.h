@@ -18,8 +18,8 @@ else:
   snip.rv = snip.c`
 
 
-struct $1
-	struct $1_priv p;
+struct $1 {
+	struct $1_priv * p;
 	$0
 };
 
