@@ -3,7 +3,7 @@ import os
 snip.rv = os.path.splitext(snip.fn)[0]`}.h> 
 #include <stdlib.h>
 
-struct ${1/.*\///}
+struct ${1/.*\///}_priv {
 	$0
 };
 

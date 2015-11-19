@@ -26,7 +26,7 @@ struct $1 {
 /**
  * create_$1 - creates $1
  * 
- * Returns instance of $1} 
+ * Returns instance of $1 
  */
 struct $1 * create_$1();
 
