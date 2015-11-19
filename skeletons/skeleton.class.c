@@ -1,6 +1,7 @@
 #include <${1:`!p
 import os
 snip.rv = os.path.splitext(snip.fn)[0]`}.h> 
+#include <stdlib.h>
 
 struct ${1/.*\///}
 	$0
