@@ -15,6 +15,7 @@
 "vim-skeletons
 "vim-snippets
 "vim-twig
+"vim-mark
 "seti.vim
 
 "You should set your console font to
