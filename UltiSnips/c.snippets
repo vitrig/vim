@@ -47,3 +47,13 @@ endsnippet
 snippet m "C method" b
 ${1:int} (*${2:function_name})(struct ${3:class_name} * self${4:, ...});
 endsnippet
+
+snippet ifcpp "ifdef cpluscplus" b
+#ifdef __cplusplus
+extern "C" {
+#endif
+	${VISUAL}${0}
+#ifdef __cplusplus
+}
+#endif
+endsnippet
