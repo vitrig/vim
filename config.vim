@@ -203,14 +203,14 @@ let g:EasyMotion_re_line_anywhere = '\v' .
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 "Do the right thing :)
-noremap  <Up> ""
-noremap! <Up> <Esc>
-noremap  <Down> ""
-noremap! <Down> <Esc>
-noremap  <Left> ""
-noremap! <Left> <Esc>
-noremap  <Right> ""
-noremap! <Right> <Esc>
+"noremap  <Up> ""
+"noremap! <Up> <Esc>
+"noremap  <Down> ""
+"noremap! <Down> <Esc>
+"noremap  <Left> ""
+"noremap! <Left> <Esc>
+"noremap  <Right> ""
+"noremap! <Right> <Esc>
 
 "Toggle relative numbering with Leader+r
 nnoremap <Leader>r :setl rnu!<CR> 

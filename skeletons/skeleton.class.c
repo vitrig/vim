@@ -11,7 +11,19 @@ struct ${1/.*\///}_priv {
 struct ${1/.*\///} * create_${1/.*\///}() 
 {
   struct ${1/.*\///} * self = malloc(sizeof *self);
+
+  if (!self) {
+    return NULL;
+  }
+
   self->p = malloc(sizeof *self->p);
+
+  if (self->p) {
+    free(self);
+    return NULL;
+  }
+
+
 
   return self;
 }
