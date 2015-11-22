@@ -17,6 +17,9 @@ if not snip.c:
 else:
   snip.rv = snip.c`
 
+#ifdef __cplusplus
+extern "C" { 
+#endif 
 
 struct $1 {
 	struct $1_priv * p;
@@ -37,6 +40,11 @@ struct $1 * create_$1();
  * @self: instance of $1
  */
 void destroy_$1(struct $1 * self);
+
+
+#ifdef __cplusplus
+}
+#endif 
 
 
 #endif /* end of include guard: __$1__`!p
