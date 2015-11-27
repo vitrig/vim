@@ -57,3 +57,11 @@ extern "C" {
 }
 #endif
 endsnippet
+
+
+snippet get "Creates getter" b
+static ${1:int} get_${2:field}(struct ${3:classname} * self)
+{
+	return self->p->$2;
+}
+endsnippet
