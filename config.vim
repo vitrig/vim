@@ -180,7 +180,7 @@ nmap s <Plug>(easymotion-s)
 " or
 " `s{char}{char}{label}=LYP`
 " Need one more keystroke, but on average, it may be more comfortable.
-nmap s <Plug>(easymotion-s2)
+"nmap s <Plug>(easymotion-s2)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
