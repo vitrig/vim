@@ -64,8 +64,15 @@ endif
 "enable syntax highlighting
 syntax enable 
 
+"remove ugly vertical line characters '|' which are visible on some
+"colorschemes
+set fillchars=vert:\ 
+            
+"airline colorscheme
+let g:airline_theme='onedark'
+
 "set colorscheme
-colorscheme flattown
+colorscheme brogrammer
 
 "Font settings
 if has('gui_running')
@@ -238,9 +245,10 @@ set nowrap
 set omnifunc=syntaxcomplete#Complete
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>" 
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
+
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
