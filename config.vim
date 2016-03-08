@@ -264,6 +264,9 @@ let skeletons#autoRegister = 1
 let skeletons#skeletonsDir = $VIMHOME."/skeletons"
 
 
+let g:ycm_autoclose_preview_window_after_insertion = 1
+
+
 "Prevents tmux from breaking background
 if &term =~ '256color'
   " disable Background Color Erase (BCE)
@@ -275,3 +278,5 @@ if &term =~ 'xterm-color'
   " disable Background Color Erase (BCE)
   set t_ut=
 endif
+
+
