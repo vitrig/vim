@@ -1,22 +1,26 @@
 "Required plugins:
 "pathogen -- first and foremost
+"airline-onedark.vim
 "auto-pairs
 "bufexplorer
 "ctrlp.vim
 "flattown
 "fonts
 "nerdtree
-"seti.vim
+"plugins
 "ultisnips
 "vim-airline
 "vim-bbye
+"vim-brogrammer-theme
 "vim-easymotion
 "vim-less
+"vim-mark
+"vim-python-pep8-indent
 "vim-skeletons
 "vim-snippets
 "vim-twig
-"vim-mark
-"seti.vim
+"YCM-Generator
+"YouCompleteMe
 
 "You should set your console font to
 "one of patched powerline fonts
@@ -35,7 +39,7 @@ set nocompatible
 "Load example vimrc
 source $VIMRUNTIME/vimrc_example.vim
    
-"YOLO mode on
+"YOLO mode on - you should use git anyway
 set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
 set noswapfile     "no swap filese
@@ -245,9 +249,9 @@ set nowrap
 set omnifunc=syntaxcomplete#Complete
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>" 
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpBackwardTrigger="<c-h>" 
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
