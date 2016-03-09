@@ -100,9 +100,6 @@ filetype plugin on
 
 filetype indent on
 
-autocmd Filetype cpp setlocal ts=2 sw=2 expandtab
-autocmd Filetype c setlocal ts=2 sw=2 expandtab
-
 set cino=is,(s,m1,N-s,g0
 
 "The encoding displayed.
