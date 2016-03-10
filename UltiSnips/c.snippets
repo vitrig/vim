@@ -1,49 +1,5 @@
 priority -51
 
-snippet cl "A class written in C" b
-struct $1 {
-	struct $1_priv p;
-	$0
-};
-
-/**
- * create_$1 - creates $1
- * 
- * Returns instance of $1${2/([^,]*) ([^ ,]+)(, )*/\n * @$2: $2/g} 
- */
-struct $1 * create_$1($2);
-
-
-/** 
- * destroy_$1 - $1 destructor
- * 
- * @self: instance of $1
- */
-void destroy_$1(struct $1 * self);
-
-
-struct $1_priv {${2/([^,]+)(, )*/\n	$1;/g}
-};
-
-
-struct $1 * create_$1($2) {
-	struct $1 * self = malloc(sizeof *self);
-	self->p = malloc(sizeof *self->p);	
-${2/([^,]*) ([^ ,]+)(, )*/\n	self->p->$2 = $2;/g} 
-	return self;
-}
-
-
-void destroy_$1(struct $1 * self) {
-	if (self) {
-		free(self->p);
-	}
-	free(self);
-}
-
-endsnippet
-
-
 snippet m "C method" b
 ${1:int} (*${2:function_name})(struct ${3:class_name} * self${4:, ...});
 endsnippet
