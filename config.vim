@@ -38,7 +38,7 @@ set nocompatible
 
 "Load example vimrc
 source $VIMRUNTIME/vimrc_example.vim
-   
+
 "YOLO mode on - you should use git anyway
 set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
@@ -62,8 +62,9 @@ set number
 "disable beeping
 set noerrorbells visualbell t_vb=
 if has('autocmd')
-  autocmd GUIEnter * set visualbell t_vb=
+    autocmd GUIEnter * set visualbell t_vb=
 endif
+
 
 "enable syntax highlighting
 syntax enable 
@@ -71,7 +72,7 @@ syntax enable
 "remove ugly vertical line characters '|' which are visible on some
 "colorschemes
 set fillchars=vert:\ 
-            
+
 "airline colorscheme
 let g:airline_theme='onedark'
 
@@ -80,11 +81,11 @@ colorscheme onedark
 
 "Font settings
 if has('gui_running')
-  if has("gui_gtk2")
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-  elseif has("gui_win32")
-    set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cEASTEUROPE 
-  endif
+    if has("gui_gtk2")
+        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
+    elseif has("gui_win32")
+        set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cEASTEUROPE 
+    endif
 endif
 
 
@@ -133,7 +134,7 @@ set nohlsearch
 "NERDTreeToggle fails with an error
 "This function fixes this problem
 function! g:WorkaroundNERDTreeToggle()
-  try | NERDTreeToggle | catch | silent! NERDTree | endtry
+    try | NERDTreeToggle | catch | silent! NERDTree | endtry
 endfunction
 
 
@@ -201,12 +202,12 @@ map <Leader>h <Plug>(easymotion-linebackward)
 
 
 let g:EasyMotion_re_line_anywhere = '\v' .
-        \       '(<.|^$)' . '|' .
-        \       '(.>|^$)' . '|' .
-        \       '(\l)\zs(\u)' . '|' .
-        \       '(_\zs.)' . '|' .
-        \       '(#\zs.)' . '|' .
-        \       "([]!\"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])"  
+            \       '(<.|^$)' . '|' .
+            \       '(.>|^$)' . '|' .
+            \       '(\l)\zs(\u)' . '|' .
+            \       '(_\zs.)' . '|' .
+            \       '(#\zs.)' . '|' .
+            \       "([]!\"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])"  
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
@@ -266,14 +267,30 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 
 "Prevents tmux from breaking background
 if &term =~ '256color'
-  " disable Background Color Erase (BCE)
-  set t_ut=
+    " disable Background Color Erase (BCE)
+    set t_ut=
 endif
 
 "Prevents tmux from breaking background
 if &term =~ 'xterm-color'
-  " disable Background Color Erase (BCE)
-  set t_ut=
+    " disable Background Color Erase (BCE)
+    set t_ut=
 endif
 
+
+"Enable syntax highlightig for $ sign in php, so that whole variable is
+"highlighter
+let php_var_selector_is_identifier = 1 
+
+"Override some php syntax highlighting
+function! PhpSyntaxOverride()
+     hi! def link phpType Structure
+     hi! def link phpFunction Function
+     hi! def link phpClass phpClassName
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
 
