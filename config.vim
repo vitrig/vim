@@ -76,7 +76,7 @@ set fillchars=vert:\
 let g:airline_theme='onedark'
 
 "set colorscheme
-colorscheme brogrammer
+colorscheme onedark
 
 "Font settings
 if has('gui_running')
