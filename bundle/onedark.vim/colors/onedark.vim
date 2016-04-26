@@ -111,7 +111,7 @@ call s:h("Label", { "fg": s:purple }) " case, default, etc.
 call s:h("Operator", {}) " sizeof", "+", "*", etc.
 call s:h("Keyword", { "fg": s:purple }) " any other keyword
 call s:h("Exception", { "fg": s:purple }) " try, catch, throw
-call s:h("PreProc", { "fg": s:yellow }) " generic Preprocessor
+call s:h("PreProc", { "fg": s:purple  }) " generic Preprocessor
 call s:h("Include", { "fg": s:blue }) " preprocessor #include
 call s:h("Define", { "fg": s:purple }) " preprocessor #define
 call s:h("Macro", { "fg": s:purple }) " same as Define
@@ -180,7 +180,7 @@ call s:h("Visual", { "fg": s:visual_black, "bg": s:visual_grey }) " Visual mode 
 call s:h("VisualNOS", { "bg": s:visual_grey }) " Visual mode selection when vim is "Not Owning the Selection". Only X11 Gui's gui-x11 and xterm-clipboard supports this.
 call s:h("WarningMsg", { "fg": s:red }) " warning messages
 call s:h("WildMenu", {}) " current match in 'wildmenu' completion
-
+ "
 " +--------------------------------+
 " | Language-Specific Highlighting |
 " +--------------------------------+
@@ -193,7 +193,6 @@ call s:h("rubyBlockParameterList", { "fg": s:red })
 call s:h("rubyInterpolation", { "fg": s:green })
 call s:h("rubyInterpolationDelimiter", { "fg": s:red })
 
-call s:h("phpClassName", { "fg": s:yellow })
 
 " +---------------------+
 " | Plugin Highlighting |
