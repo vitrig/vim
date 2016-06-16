@@ -4,7 +4,7 @@
 "auto-pairs
 "bufexplorer
 "ctrlp.vim
-"flattown
+"set.vim
 "fonts
 "nerdtree
 "plugins
@@ -36,29 +36,30 @@ execute pathogen#infect()
 "Disable compatible mode
 set nocompatible
 
-"Load example vimrc
-source $VIMRUNTIME/vimrc_example.vim
+" In many terminal emulators the mouse works just fine, thus enable it.
+if has('mouse')
+  set mouse=a
+endif
 
-"YOLO mode on - you should use git anyway
+set backspace=indent,eol,start
+set history=50		" keep 50 lines of command line history
+set ruler		" show the cursor position all the time
+set showcmd		" display incomplete commands
+set incsearch		" do incremental searching
+
+"Prevent vim from generating crapfiles
 set nobackup       "no backup files
 set nowritebackup  "only in case you don't want a backup file while editing
 set noswapfile     "no swap filese
 set noundofile     "no undo files
 
-"remove menu bar
-set guioptions-=m  
+"Remove some unnecessary options from gui versions of vim
+set guioptions-=m "remove menu bar
+set guioptions-=T "remove toolbar
+set guioptions-=r "remove right-hand scroll bar
+set guioptions-=L "remove left-hand scroll bar
 
-"remove toolbar
-set guioptions-=T  
-
-"remove right-hand scroll bar
-set guioptions-=r
-
-"remove left-hand scroll bar
-set guioptions-=L 
-
-"display line numbers
-set number 
+set number "display line numbers
 
 "disable beeping
 set noerrorbells visualbell t_vb=
@@ -66,19 +67,18 @@ if has('autocmd')
     autocmd GUIEnter * set visualbell t_vb=
 endif
 
+" Colorscheme settings
+syntax enable "enable syntax highlighting
 
-"enable syntax highlighting
-syntax enable 
+colorscheme seti "set colorscheme
+let g:airline_theme='dark' "set airline colorscheme
 
-"remove ugly vertical line characters '|' which are visible on some
-"colorschemes
-set fillchars=vert:\ 
+" Colorscheme fixes
+highlight nonText ctermbg=NONE  "make background consistent
+highlight CursorLine cterm=NONE "remove underline from CursorLine
+set fillchars=vert:\ "remove ugly vertical line characters '|' which are visible on some colorschemes
 
-"airline colorscheme
-let g:airline_theme='onedark'
 
-"set colorscheme
-colorscheme onedark
 
 "Font settings
 if has('gui_running')
@@ -124,7 +124,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeChDirMode=2
 
 
-set colorcolumn=79
+set colorcolumn=80 "enable ruler
+set cursorline     "enable current line highlighting
 
 
 "disable hightlighting when searching
@@ -277,21 +278,4 @@ if &term =~ 'xterm-color'
     " disable Background Color Erase (BCE)
     set t_ut=
 endif
-
-
-"Enable syntax highlightig for $ sign in php, so that whole variable is
-"highlighter
-let php_var_selector_is_identifier = 1 
-
-"Override some php syntax highlighting
-function! PhpSyntaxOverride()
-     hi! def link phpType Structure
-     hi! def link phpFunction Function
-     hi! def link phpClass phpClassName
-endfunction
-
-augroup phpSyntaxOverride
-    autocmd!
-    autocmd FileType php call PhpSyntaxOverride()
-augroup END
 
