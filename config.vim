@@ -70,8 +70,8 @@ endif
 " Colorscheme settings
 syntax enable "enable syntax highlighting
 
-colorscheme seti "set colorscheme
-let g:airline_theme='dark' "set airline colorscheme
+colorscheme monokai "set colorscheme
+let g:airline_theme='monokai' "set airline colorscheme
 
 " Colorscheme fixes
 highlight nonText ctermbg=NONE  "make background consistent
@@ -279,3 +279,8 @@ if &term =~ 'xterm-color'
     set t_ut=
 endif
 
+set pastetoggle=<Leader>p
+
+"Enable syntax highlightig for $ sign in php, so that whole variable is		
+"highlighter		
+let php_var_selector_is_identifier = 1
