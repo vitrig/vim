@@ -1,41 +1,50 @@
-"Required plugins:
-"pathogen -- first and foremost
+let mapleader = " " "Map leader to space - it is more reachable
 
-"Map leader to space
-"It is more reachable
-let mapleader = " "
-
-"Pathogen is used to allow installation
-"of custom plugins easily
+"Pathogen is used to allow instalation of custom plugins easily
 execute pathogen#infect() 
 
-"Disable compatible mode
-set nocompatible
+
+"Editor settings
+set nocompatible                "Disable compatible mode
+set backspace=indent,eol,start
+set history=50		            "keep 50 lines of command line history
+set ruler                       "show the cursor position all the time
+set showcmd		                "display incomplete commands
+set incsearch		            "do incremental searching
+set nobackup                    "no backup files
+set nowritebackup               "only in case you don't want a backup file while editing
+set noswapfile                  "no swap files
+set noundofile                  "no undo files
+set guioptions-=m               "remove menu bar from gui version of vim
+set guioptions-=T               "remove toolbar from gui version of vim
+set guioptions-=r               "remove right-hand scroll bar from gui version of vim
+set guioptions-=L               "remove left-hand scroll bar from gui version of vim
+set number                      "display line numbers
+syntax enable                   "enable syntax highlighting
+set encoding=utf-8              "The encoding displayed.
+set fileencoding=utf-8          "The encoding written to file. 
+set splitright                  "To make vsplit put the new buffer on the right of the current buffer:
+set splitbelow                  "Similarly, to make split put the new buffer below the current buffer:
+set colorcolumn=80              "enable ruler
+set cursorline                  "enable current line highlighting
+set nohlsearch                  "disable hightlighting when searching
+set pastetoggle=<Leader>p		"map SPACE + P to set paste 
+filetype on                     "enable file type detection
+filetype plugin on              "enable loading the plugin files for specific file types with:
+filetype indent on              "enable loading the plugin files for specific file types with:
+set nowrap                      "Disable word wrap.
+
+"Coding style settings
+set tabstop=4
+set shiftwidth=4
+set expandtab
+set cino=is,(s,m1,N-s,g0
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
 endif
 
-set backspace=indent,eol,start
-set history=50		" keep 50 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-
-"Prevent vim from generating crapfiles
-set nobackup       "no backup files
-set nowritebackup  "only in case you don't want a backup file while editing
-set noswapfile     "no swap filese
-set noundofile     "no undo files
-
-"Remove some unnecessary options from gui versions of vim
-set guioptions-=m "remove menu bar
-set guioptions-=T "remove toolbar
-set guioptions-=r "remove right-hand scroll bar
-set guioptions-=L "remove left-hand scroll bar
-
-set number "display line numbers
 
 "disable beeping
 set noerrorbells visualbell t_vb=
@@ -44,38 +53,17 @@ if has('autocmd')
 endif
 
 " Colorscheme settings
-syntax enable "enable syntax highlighting
-
 colorscheme monokai "set colorscheme
 let g:airline_theme='monokai' "set airline colorscheme
-
-" Colorscheme fixes
 highlight nonText ctermbg=NONE  "make background consistent
 highlight CursorLine cterm=NONE "remove underline from CursorLine
-set fillchars=vert:\ "remove ugly vertical line characters '|' which are visible on some colorschemes
+set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
 
-set tabstop=4
-set shiftwidth=4
-set expandtab
 
-filetype on
-filetype plugin on 
-filetype indent on
 
-set cino=is,(s,m1,N-s,g0
 
-"The encoding displayed.
-set encoding=utf-8 
 
-"The encoding written to file. 
-set fileencoding=utf-8 
-
-"To make vsplit put the new buffer on the right of the current buffer:
-set splitright
-
-"Similarly, to make split put the new buffer below the current buffer:
-set splitbelow
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -85,12 +73,8 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 let NERDTreeChDirMode=2
 
 
-set colorcolumn=80 "enable ruler
-set cursorline     "enable current line highlighting
 
 
-"disable hightlighting when searching
-set nohlsearch
 
 
 "Whenever NERDTree buffer gets closed
@@ -176,15 +160,6 @@ let g:EasyMotion_re_line_anywhere = '\v' .
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
-"Do the right thing :)
-"noremap  <Up> ""
-"noremap! <Up> <Esc>
-"noremap  <Down> ""
-"noremap! <Down> <Esc>
-"noremap  <Left> ""
-"noremap! <Left> <Esc>
-"noremap  <Right> ""
-"noremap! <Right> <Esc>
 
 "Toggle relative numbering with Leader+r
 nnoremap <Leader>r :setl rnu!<CR> 
@@ -197,8 +172,8 @@ map <TAB> <C-w><C-w>
 map ` <C-w><C-h>
 
 
-nnoremap m .
 
+nnoremap m .
 
 "Move more
 vnoremap <C-j> 15j
@@ -209,8 +184,6 @@ nnoremap <C-k> 15k
 "256 color support
 set t_Co=256
 
-"Disable word wrap.
-set nowrap
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-l>"
@@ -232,7 +205,6 @@ if &term =~ '256color' || &term =~ 'xterm-color'
     set t_ut=
 endif
 
-set pastetoggle=<Leader>p
 
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
 "highlighter		
