@@ -1,29 +1,5 @@
 "Required plugins:
 "pathogen -- first and foremost
-"airline-onedark.vim
-"auto-pairs
-"bufexplorer
-"ctrlp.vim
-"set.vim
-"fonts
-"nerdtree
-"plugins
-"ultisnips
-"vim-airline
-"vim-bbye
-"vim-brogrammer-theme
-"vim-easymotion
-"vim-less
-"vim-mark
-"vim-python-pep8-indent
-"vim-skeletons
-"vim-snippets
-"vim-twig
-"YCM-Generator
-"YouCompleteMe
-
-"You should set your console font to
-"one of patched powerline fonts
 
 "Map leader to space
 "It is more reachable
@@ -79,27 +55,12 @@ highlight CursorLine cterm=NONE "remove underline from CursorLine
 set fillchars=vert:\ "remove ugly vertical line characters '|' which are visible on some colorschemes
 
 
-
-"Font settings
-if has('gui_running')
-    if has("gui_gtk2")
-        set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 10
-    elseif has("gui_win32")
-        set guifont=DejaVu_Sans_Mono_for_Powerline:h10:cEASTEUROPE 
-    endif
-endif
-
-
 set tabstop=4
-
 set shiftwidth=4
-
 set expandtab
 
 filetype on
-
 filetype plugin on 
-
 filetype indent on
 
 set cino=is,(s,m1,N-s,g0
@@ -160,7 +121,9 @@ inoremap jk <esc>
 set laststatus=2
 
 "Enable powerline fonts
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
 
 "Tabline enable
 let g:airline#extensions#tabline#enabled = 1 
@@ -234,6 +197,9 @@ map <TAB> <C-w><C-w>
 map ` <C-w><C-h>
 
 
+nnoremap m .
+
+
 "Move more
 vnoremap <C-j> 15j
 nnoremap <C-j> 15j
@@ -246,8 +212,6 @@ set t_Co=256
 "Disable word wrap.
 set nowrap
 
-set omnifunc=syntaxcomplete#Complete
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-l>"
@@ -258,23 +222,12 @@ let g:UltiSnipsEditSplit="vertical"
 
 let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
 
-" Activate vim-skeletons
-let skeletons#autoRegister = 1
-
-let skeletons#skeletonsDir = $VIMHOME."/skeletons"
-
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
 
 "Prevents tmux from breaking background
-if &term =~ '256color'
-    " disable Background Color Erase (BCE)
-    set t_ut=
-endif
-
-"Prevents tmux from breaking background
-if &term =~ 'xterm-color'
+if &term =~ '256color' || &term =~ 'xterm-color'
     " disable Background Color Erase (BCE)
     set t_ut=
 endif
