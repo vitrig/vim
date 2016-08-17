@@ -33,6 +33,7 @@ filetype on                     "enable file type detection
 filetype plugin on              "enable loading the plugin files for specific file types with:
 filetype indent on              "enable loading the plugin files for specific file types with:
 set nowrap                      "Disable word wrap.
+set hidden                      "This allows buffer to become hidden when new file is created
 
 "Coding style settings
 set tabstop=4
@@ -60,21 +61,11 @@ highlight CursorLine cterm=NONE "remove underline from CursorLine
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
 
-
-
-
-
-
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
-
 let NERDTreeChDirMode=2
-
-
-
-
 
 
 "Whenever NERDTree buffer gets closed
@@ -125,9 +116,6 @@ nnoremap <Leader>w :w<CR>
 "Elegantly create new buffer in current
 "window like a decent modern text editor
 nnoremap <Leader>n :enew<CR>
-"This allows buffer to become hidden
-"when new file is created
-set hidden
 
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 
@@ -167,15 +155,13 @@ nnoremap <Leader>r :setl rnu!<CR>
 
 "Make movement between
 "windows easier by using 
-"tab key to switch windows
+"tab key and `` to switch windows
 map <TAB> <C-w><C-w>
 map ` <C-w><C-h>
 
 
 
 nnoremap m .
-
-"Move more
 vnoremap <C-j> 15j
 nnoremap <C-j> 15j
 vnoremap <C-k> 15k
@@ -185,14 +171,10 @@ nnoremap <C-k> 15k
 set t_Co=256
 
 
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-l>"
-let g:UltiSnipsJumpBackwardTrigger="<c-h>" 
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
+let g:UltiSnipsExpandTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsJumpForwardTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsJumpBackwardTrigger="<c-h>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
 
 
