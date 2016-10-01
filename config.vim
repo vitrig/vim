@@ -25,8 +25,6 @@ set encoding=utf-8              "The encoding displayed.
 set fileencoding=utf-8          "The encoding written to file. 
 set splitright                  "To make vsplit put the new buffer on the right of the current buffer:
 set splitbelow                  "Similarly, to make split put the new buffer below the current buffer:
-set colorcolumn=80              "enable ruler
-set cursorline                  "enable current line highlighting
 set nohlsearch                  "disable hightlighting when searching
 set pastetoggle=<Leader>p		"map SPACE + P to set paste 
 filetype on                     "enable file type detection
@@ -54,8 +52,7 @@ if has('autocmd')
 endif
 
 " Colorscheme settings
-colorscheme monokai "set colorscheme
-let g:airline_theme='monokai' "set airline colorscheme
+colorscheme slate "set colorscheme
 highlight nonText ctermbg=NONE  "make background consistent
 highlight CursorLine cterm=NONE "remove underline from CursorLine
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
@@ -167,9 +164,6 @@ nnoremap <C-j> 15j
 vnoremap <C-k> 15k
 nnoremap <C-k> 15k
 
-"256 color support
-set t_Co=256
-
 
 let g:UltiSnipsExpandTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsJumpForwardTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
@@ -179,13 +173,6 @@ let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
 
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
-
-
-"Prevents tmux from breaking background
-if &term =~ '256color' || &term =~ 'xterm-color'
-    " disable Background Color Erase (BCE)
-    set t_ut=
-endif
 
 
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
