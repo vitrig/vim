@@ -79,6 +79,8 @@ endfunction
 "Toggle NerdTree
 nnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
 vnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
+nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
+nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
 
 "Switch between buffers
 nnoremap , :bprev! <CR>
@@ -158,6 +160,8 @@ nnoremap <Leader>r :setl rnu!<CR>
 "tab key and `` to switch windows
 map <TAB> <C-w><C-w>
 map ` <C-w><C-h>
+map <Leader>o <C-w><C-w>
+map <Leader>u <C-w><C-h>
 
 
 
