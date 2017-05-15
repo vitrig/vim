@@ -185,3 +185,10 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
 "highlighter		
 let php_var_selector_is_identifier = 1
+
+
+"tagbar
+"======
+nnoremap \| :TagbarToggle<CR>
+vnoremap \| :TagbarToggle<CR>
+
