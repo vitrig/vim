@@ -33,6 +33,7 @@ filetype indent on              "enable loading the plugin files for specific fi
 set nowrap                      "Disable word wrap.
 set hidden                      "This allows buffer to become hidden when new file is created
 set cursorline                  "Highlights current line
+set colorcolumn=80              "Vertical ruler at 80
 
 "Coding style settings
 set tabstop=4
@@ -56,7 +57,8 @@ endif
 colorscheme slate "set colorscheme
 highlight nonText ctermbg=NONE  "make background consistent
 highlight CursorLine cterm=NONE "remove underline from CursorLine
-highlight CursorLine term=bold cterm=bold ctermbg=8
+highlight CursorLine term=bold cterm=bold ctermbg=233
+highlight ColorColumn term=bold cterm=bold ctermbg=233
 highlight VertSplit term=NONE cterm=NONE ctermbg=8
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
