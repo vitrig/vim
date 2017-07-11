@@ -57,8 +57,8 @@ endif
 colorscheme slate "set colorscheme
 highlight nonText ctermbg=NONE  "make background consistent
 highlight CursorLine cterm=NONE "remove underline from CursorLine
-highlight CursorLine term=bold cterm=bold ctermbg=233
-highlight ColorColumn term=bold cterm=bold ctermbg=233
+highlight CursorLine term=bold cterm=bold ctermbg=8
+highlight ColorColumn term=bold cterm=bold ctermbg=8
 highlight VertSplit term=NONE cterm=NONE ctermbg=8
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
