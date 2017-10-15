@@ -54,12 +54,13 @@ if has('autocmd')
 endif
 
 " Colorscheme settings
-colorscheme slate "set colorscheme
+colorscheme one "set colorscheme
+set background=dark
 highlight nonText ctermbg=NONE  "make background consistent
 highlight CursorLine cterm=NONE "remove underline from CursorLine
-highlight CursorLine term=bold cterm=bold ctermbg=233
-highlight ColorColumn term=bold cterm=bold ctermbg=233
-highlight VertSplit term=NONE cterm=NONE ctermbg=8
+highlight CursorLine term=bold cterm=bold ctermbg=236
+highlight ColorColumn term=bold cterm=bold ctermbg=236
+"highlight VertSplit term=NONE cterm=NONE ctermbg=8
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
 
@@ -100,9 +101,10 @@ inoremap jk <esc>
 set laststatus=2
 
 "Enable powerline fonts
-let g:airline_powerline_fonts = 0
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
+let g:airline_powerline_fonts = 1
+"let g:airline_left_sep = ''
+"let g:airline_right_sep = ''
+let g:airline_theme = 'onedark'
 
 "Tabline enable
 let g:airline#extensions#tabline#enabled = 1 
