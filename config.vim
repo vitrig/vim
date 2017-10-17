@@ -34,6 +34,8 @@ set nowrap                      "Disable word wrap.
 set hidden                      "This allows buffer to become hidden when new file is created
 set cursorline                  "Highlights current line
 set colorcolumn=80              "Vertical ruler at 80
+set showbreak=↪\ 
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:.
 
 "Coding style settings
 set tabstop=4
@@ -57,12 +59,12 @@ endif
 colorscheme one "set colorscheme
 set background=dark
 highlight nonText ctermbg=NONE  "make background consistent
+highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
 highlight CursorLine term=bold cterm=bold ctermbg=236
 highlight ColorColumn term=bold cterm=bold ctermbg=236
 "highlight VertSplit term=NONE cterm=NONE ctermbg=8
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
-
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -157,7 +159,6 @@ let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 "Toggle relative numbering with Leader+r
 nnoremap <Leader>r :setl rnu!<CR> 
-
 
 "Make movement between
 "windows easier by using 
