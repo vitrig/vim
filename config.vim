@@ -63,6 +63,8 @@ highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
 highlight CursorLine term=bold cterm=bold ctermbg=236
 highlight ColorColumn term=bold cterm=bold ctermbg=236
+"completion menu text color fix
+highlight Pmenu ctermfg=8
 "highlight VertSplit term=NONE cterm=NONE ctermbg=8
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
@@ -185,7 +187,8 @@ let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
 
 
 let g:ycm_autoclose_preview_window_after_insertion = 1
-
+"Do not ask whether to load .ycm_extra_conf
+let g:ycm_confirm_extra_conf = 0
 
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
 "highlighter		
