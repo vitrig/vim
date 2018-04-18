@@ -189,6 +189,11 @@ let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
 let g:ycm_autoclose_preview_window_after_insertion = 1
 "Do not ask whether to load .ycm_extra_conf
 let g:ycm_confirm_extra_conf = 0
+let g:ycm_complete_in_comments = 1
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+nnoremap <Leader>g :YcmCompleter GoTo<CR>
+
 
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
 "highlighter		
