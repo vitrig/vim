@@ -5,21 +5,22 @@ __config_name=".clang_complete"
 __path_flags = ( '-isystem', '-I', '-iquote', '--sysroot' )
 
 
-def find_config(fname):
+def find_configs(fname):
     """
     search for config file
     """
     dirname = os.path.dirname(os.path.realpath(fname))
+    configs = []
 
     while dirname != '/':
         cfg = os.path.join(dirname, __config_name)
 
         if os.path.exists(cfg):
-            return cfg
+            configs.append(cfg)
 
         dirname = os.path.realpath(os.path.join(dirname, '..'))
 
-    return None
+    return configs
 
 def process_path(config_location, elem):
     """
@@ -79,12 +80,10 @@ def fix_params(params):
 
     return out
 
-def get_file_params(fname):
+def get_config_params(cfg):
     """
-    read params from file
+    read params from config 
     """
-    cfg = find_config(fname)
-
     if cfg is None:
         return []
 
@@ -94,8 +93,19 @@ def get_file_params(fname):
     params_fixed = fix_params(params)
 
     return process_params(cfg, params_fixed)
-        
 
+def get_file_params(fname):
+    """
+    read params from file
+    """
+    cfgs = find_configs(fname)
+    output = []
+    for cfg in reversed(cfgs):
+        output.extend(get_config_params(cfg))
+
+    return output
+
+        
 
 if __name__ == "__main__":
     print(fix_params(['-std=/asd/f/','']))

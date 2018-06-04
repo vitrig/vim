@@ -3,7 +3,6 @@ let mapleader = " " "Map leader to space - it is more reachable
 "Pathogen is used to allow instalation of custom plugins easily
 execute pathogen#infect() 
 
-
 "Editor settings
 set nocompatible                "Disable compatible mode
 set backspace=indent,eol,start
@@ -34,8 +33,8 @@ set nowrap                      "Disable word wrap.
 set hidden                      "This allows buffer to become hidden when new file is created
 set cursorline                  "Highlights current line
 set colorcolumn=80              "Vertical ruler at 80
-set showbreak=↪\ 
-set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:.
+set showbreak=↪\                "How to show end of line
+set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:. "How to show characters in set list mode
 
 "Coding style settings
 set tabstop=4
@@ -180,9 +179,19 @@ nnoremap <C-j> 15j
 vnoremap <C-k> 15k
 nnoremap <C-k> 15k
 
+"Executing python code inline
+"============================
+"Execute selection and replace
+nnoremap <Leader>x :'<,'>Pyer<CR>
+vnoremap <Leader>x :'<,'>Pyer<CR>
+"Execute selection and append
+nnoremap <Leader>z :'<,'>Pyea<CR>
+vnoremap <Leader>z :'<,'>Pyea<CR>
 
 let g:UltiSnipsExpandTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+                                          " Do not set this to c-j it will break visual selection with fast movement
 let g:UltiSnipsJumpForwardTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+                                          " Do not set this to c-j it will break visual selection with fast movement
 let g:UltiSnipsJumpBackwardTrigger="<c-h>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
@@ -196,6 +205,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 
 nnoremap <Leader>g :YcmCompleter GoTo<CR>
 
+let g:switch_mapping = "-" "Map :Switch command to -. - is prev line by default (not very useful)
 
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
 "highlighter		
