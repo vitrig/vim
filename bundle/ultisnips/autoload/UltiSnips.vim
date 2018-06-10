@@ -1,11 +1,4 @@
 if exists("b:did_autoload_ultisnips") || !exists("g:_uspy")
-    " Define no-op function, called via ftdetect/UltiSnips.vim.
-    " TODO(sirver): Add a test for that using a bad g:UltiSnipsPythonVersion
-    " setting. Without this fix moving the cursor will spam errors, with this
-    " it should not.
-    function! UltiSnips#FileTypeChanged()
-    endfunction
-
     finish
 endif
 let b:did_autoload_ultisnips = 1
@@ -42,6 +35,8 @@ function! UltiSnips#Edit(bang, ...)
             let mode = 'vs'
         elseif g:UltiSnipsEditSplit == 'horizontal'
             let mode = 'sp'
+        elseif g:UltiSnipsEditSplit == 'tabdo'
+            let mode = 'tabedit'
         elseif g:UltiSnipsEditSplit == 'context'
             let mode = 'vs'
             if winwidth(0) <= 2 * (&tw ? &tw : 80)
@@ -53,7 +48,7 @@ function! UltiSnips#Edit(bang, ...)
 endfunction
 
 function! UltiSnips#AddFiletypes(filetypes)
-    exec g:_uspy "UltiSnips_Manager.add_buffer_filetypes('" . a:filetypes . ".all')"
+    exec g:_uspy "UltiSnips_Manager.add_buffer_filetypes('" . a:filetypes . "')"
     return ""
 endfunction
 
@@ -89,13 +84,17 @@ function! UltiSnips#ListSnippets()
     return ""
 endfunction
 
-function! UltiSnips#SnippetsInCurrentScope()
+function! UltiSnips#SnippetsInCurrentScope(...)
     let g:current_ulti_dict = {}
-    exec g:_uspy "UltiSnips_Manager.snippets_in_current_scope()"
+    let all = get(a:, 1, 0)
+    if all
+      let g:current_ulti_dict_info = {}
+    endif
+    exec g:_uspy "UltiSnips_Manager.snippets_in_current_scope(" . all . ")"
     return g:current_ulti_dict
 endfunction
 
-function! UltiSnips#SaveLastVisualSelection()
+function! UltiSnips#SaveLastVisualSelection() range
     exec g:_uspy "UltiSnips_Manager._save_last_visual_selection()"
     return ""
 endfunction
@@ -111,13 +110,6 @@ function! UltiSnips#JumpForwards()
     exec g:_uspy "UltiSnips_Manager.jump_forwards()"
     return ""
 endfunction
-
-function! UltiSnips#FileTypeChanged()
-    exec g:_uspy "UltiSnips_Manager.reset_buffer_filetypes()"
-    exec g:_uspy "UltiSnips_Manager.add_buffer_filetypes('" . &ft . "')"
-    return ""
-endfunction
-
 
 function! UltiSnips#AddSnippetWithPriority(trigger, value, description, options, filetype, priority)
     exec g:_uspy "trigger = vim.eval(\"a:trigger\")"
@@ -139,7 +131,6 @@ function! UltiSnips#Anon(value, ...)
     return ""
 endfunction
 
-
 function! UltiSnips#CursorMoved()
     exec g:_uspy "UltiSnips_Manager._cursor_moved()"
 endf
@@ -154,5 +145,9 @@ endfunction
 
 function! UltiSnips#TrackChange()
     exec g:_uspy "UltiSnips_Manager._track_change()"
+endfunction
+
+function! UltiSnips#RefreshSnippets()
+    exec g:_uspy "UltiSnips_Manager._refresh_snippets()"
 endfunction
 " }}}

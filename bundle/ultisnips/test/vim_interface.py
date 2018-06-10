@@ -91,6 +91,29 @@ class VimInterface(TempFileManager):
     def __init__(self, vim_executable, name):
         TempFileManager.__init__(self, name)
         self._vim_executable = vim_executable
+        self._version = None
+
+    @property
+    def vim_executable(self):
+        return self._vim_executable
+
+    def has_version(self, major, minor, patchlevel):
+        if self._version is None:
+            output = subprocess.check_output([
+                self._vim_executable, "--version"
+            ])
+
+            _major = 0
+            _minor = 0
+            _patch = 0
+            for line in output.decode('utf-8').split("\n"):
+                if line.startswith("VIM - Vi IMproved"):
+                    _major, _minor = map(int, line.split()[4].split('.'))
+                if line.startswith("Included patches:"):
+                    _patch = int(line.split('-')[1])
+            self._version = (_major, _minor, _patch)
+
+        return self._version >= (major, minor, patchlevel)
 
     def get_buffer_data(self):
         buffer_path = self.unique_name_temp(prefix='buffer_')
@@ -153,9 +176,10 @@ class VimInterfaceTmux(VimInterface):
         # to tmux, but it seems like this is all that is needed for now.
         s = s.replace(';', r'\;')
 
-        if PYTHON3:
-            s = s.encode('utf-8')
-        silent_call(['tmux', 'send-keys', '-t', self.session, '-l', s])
+        if len(s) == 1:
+            silent_call(['tmux', 'send-keys', '-t', self.session, hex(ord(s))])
+        else:
+            silent_call(['tmux', 'send-keys', '-t', self.session, '-l', s])
 
     def send_to_terminal(self, s):
         return self._send(s)

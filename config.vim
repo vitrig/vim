@@ -57,11 +57,12 @@ endif
 " Colorscheme settings
 colorscheme one "set colorscheme
 set background=dark
-highlight nonText ctermbg=NONE  "make background consistent
+highlight NonText ctermbg=NONE  "make background consistent
 highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
-highlight CursorLine term=bold cterm=bold ctermbg=236
 highlight ColorColumn term=bold cterm=bold ctermbg=236
+highlight CursorLine term=bold cterm=bold ctermbg=236
+
 "completion menu text color fix
 highlight Pmenu ctermfg=8
 "highlight VertSplit term=NONE cterm=NONE ctermbg=8

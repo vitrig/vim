@@ -4,7 +4,7 @@
 " Version: 1.1.1-pre
 
 " Global setup =============================================================={{{
-
+"
 if exists("*<SID>X")
   delf <SID>X
   delf <SID>rgb

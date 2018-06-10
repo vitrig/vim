@@ -346,3 +346,36 @@ c2
 c3
 c0
 a0"""
+
+class SnippetActions_PostActionModifiesCharAfterSnippet(_VimTest):
+    files = { 'us/all.snippets': r"""
+        post_expand "snip.buffer[snip.snippet_end[0]] = snip.buffer[snip.snippet_end[0]][:-1]"
+        snippet a "desc" i
+        ($1)
+        endsnippet
+        """}
+    keys = '[]' + ARR_L + 'a' + EX + '1' + JF + '2'
+    wanted = '[(1)2'
+
+
+class SnippetActions_PostActionModifiesLineAfterSnippet(_VimTest):
+    files = { 'us/all.snippets': r"""
+        post_expand "snip.buffer[snip.snippet_end[0]+1:snip.snippet_end[0]+2] = []"
+        snippet a "desc"
+        1: $1
+        $0
+        endsnippet
+        """}
+    keys = '\n3' + ARR_U + 'a' + EX + '1' + JF + '2'
+    wanted = '1: 1\n2'
+
+
+class SnippetActions_DoNotBreakCursorOnSingleLikeChange(_VimTest):
+    files = { 'us/all.snippets': r"""
+        post_expand "snip.buffer[snip.snippet_end[0]] = 'def'; snip.cursor.preserve()"
+        snippet a "desc"
+        asd
+        endsnippet
+        """}
+    keys = 'a' + EX + '123'
+    wanted = 'def123'

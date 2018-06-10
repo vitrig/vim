@@ -10,4 +10,5 @@ endif
 "ALL configuration, plugins, ..., in git repo :)
 source $VIMHOME/config.vim
 
-
+"Enable this when using Adapta theme on ubuntu
+"source $VIMHOME/adapta.vim
