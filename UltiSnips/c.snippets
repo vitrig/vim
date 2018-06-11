@@ -24,7 +24,6 @@ def default_var(x):
 		return tokens[0].strip("\t\n ")
 	
 	return "err";
-
 endglobal
 
 snippet m "C method" b
@@ -49,10 +48,20 @@ static ${1:int} get_${2:field}(struct ${3:classname} * self)
 }
 endsnippet
 
+
 snippet iferr "Error handling with if" b
 ${1:`!p snip.rv = default_var(snip.v.text)`} = ${2:`!p snip.rv = right_side(snip.v.text.rstrip("; \n").lstrip("\t "))`};
 if ($1) {
 	fprintf(stderr, "`!p snip.rv = get_function_name(right_side(t[2]))` failed\n");
+	goto err;
+}
+endsnippet
+
+snippet iferrpnl "Error handling" b
+${1:`!p snip.rv = default_var(snip.v.text)`} = ${2:`!p snip.rv = right_side(snip.v.text.rstrip("; \n").lstrip("\t "))`};
+if ($1) {
+	dbg_err_fn_ret(`!p snip.rv = get_function_name(right_side(t[2]))`, $1);
+	ret = PON_ADAPTER_ERROR;
 	goto err;
 }
 $0
