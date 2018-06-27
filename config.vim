@@ -222,3 +222,9 @@ let php_var_selector_is_identifier = 1
 nnoremap \| :TagbarToggle<CR>
 vnoremap \| :TagbarToggle<CR>
 
+
+"CTRL-P
+"======
+let g:ctrlp_open_new_file = 'r'
+let g:ctrlp_open_multiple_files = 'i'
+let g:ctrlp_arg_map = 0
