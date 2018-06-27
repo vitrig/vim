@@ -142,6 +142,10 @@ nmap s <Plug>(easymotion-s)
 
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
+ 
+"We don't want vim-gitgutter to set up any mappings at all, because
+"the conflict wit easymotion-linebackward
+let g:gitgutter_map_keys = 0
 
 " JK motions: Line motions
 map <Leader>l <Plug>(easymotion-lineforward)
