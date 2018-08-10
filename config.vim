@@ -224,8 +224,8 @@ nnoremap \| :TagbarToggle<CR>
 vnoremap \| :TagbarToggle<CR>
 
 
-"CTRL-P
-"======
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_open_multiple_files = 'i'
-let g:ctrlp_arg_map = 0
+"fzf: https://github.com/junegunn/fzf
+"====================================
+set rtp+=$FZF_HOME
+map <c-p> :FZF<CR>
+nnoremap <silent> <expr> <c-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
