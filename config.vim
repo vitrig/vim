@@ -201,16 +201,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-h>" " Trigger configuration. Do not use <
 let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
 
-
-let g:ycm_autoclose_preview_window_after_insertion = 1
-"Do not ask whether to load .ycm_extra_conf
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_complete_in_comments = 1
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_python_binary_path = 'python'
-
-nnoremap <Leader>g :YcmCompleter GoTo<CR>
-
 let g:switch_mapping = "-" "Map :Switch command to -. - is prev line by default (not very useful)
 
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
@@ -229,3 +219,29 @@ vnoremap \| :TagbarToggle<CR>
 set rtp+=$FZF_HOME
 map <c-p> :FZF<CR>
 nnoremap <silent> <expr> <c-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+
+"Language Server Protocol settings
+"=================================
+if executable('clangd')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd',
+        \ 'cmd': {server_info->['clangd']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+elseif executable('clangd-6.0')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'clangd-6.0',
+        \ 'cmd': {server_info->['clangd-6.0']},
+        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
+        \ })
+endif
+
+let g:lsp_signs_enabled = 1         " enable signs
+let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'} " icons require GUI
+let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'} " icons require GUI
+
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
