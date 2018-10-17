@@ -18,6 +18,7 @@ set guioptions-=m               "remove menu bar from gui version of vim
 set guioptions-=T               "remove toolbar from gui version of vim
 set guioptions-=r               "remove right-hand scroll bar from gui version of vim
 set guioptions-=L               "remove left-hand scroll bar from gui version of vim
+set guicursor=                  "prevent NeoVIM from changing the cursor
 set number                      "display line numbers
 syntax enable                   "enable syntax highlighting
 set encoding=utf-8              "The encoding displayed.
@@ -72,8 +73,12 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
+"NERDTree
+"========
 let NERDTreeChDirMode=2
 
+"NERDTree window width in columns
+let g:NERDTreeWinSize=25 
 
 "Whenever NERDTree buffer gets closed
 "NERDTreeToggle fails with an error
@@ -81,7 +86,6 @@ let NERDTreeChDirMode=2
 function! g:WorkaroundNERDTreeToggle()
     try | NERDTreeToggle | catch | silent! NERDTree | endtry
 endfunction
-
 
 "Toggle NerdTree
 nnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
@@ -176,8 +180,6 @@ map ` <C-w><C-h>
 map <Leader>o <C-w><C-w>
 map <Leader>u <C-w><C-h>
 
-
-
 nnoremap m .
 vnoremap <C-j> 15j
 nnoremap <C-j> 15j
@@ -207,7 +209,6 @@ let g:switch_mapping = "-" "Map :Switch command to -. - is prev line by default 
 "highlighter		
 let php_var_selector_is_identifier = 1
 
-
 "tagbar
 "======
 nnoremap \| :TagbarToggle<CR>
@@ -236,12 +237,19 @@ elseif executable('clangd-6.0')
         \ })
 endif
 
-let g:lsp_signs_enabled = 1         " enable signs
-let g:lsp_diagnostics_echo_cursor = 1 " enable echo under cursor when in normal mode
+let g:lsp_signs_enabled = 1             " enable signs
+let g:lsp_diagnostics_echo_cursor = 1   " enable echo under cursor when in normal mode
 let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': '‼', 'icon': '/path/to/some/icon'} " icons require GUI
-let g:lsp_signs_hint = {'icon': '/path/to/some/other/icon'} " icons require GUI
+let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_signs_hint = {'text': '?'}
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+
+"To auto close preview window when completion is done.
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
+"Terminal
+"========
+tnoremap jk <C-\><C-n>
