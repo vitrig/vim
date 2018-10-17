@@ -15,8 +15,8 @@ cp -vf "$DIR/.vimrc" ~/.vimrc
 true ${XDG_CONFIG_HOME:=$HOME/.config}
 
 if mkdir -vp $XDG_CONFIG_HOME 2> /dev/null; then
-    ln -v -s ~/.vim $XDG_CONFIG_HOME/nvim
-    ln -v -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim
+    ln -v -s --no-target-directory ~/.vim $XDG_CONFIG_HOME/nvim 2> /dev/null
+    ln -v -s ~/.vimrc $XDG_CONFIG_HOME/nvim/init.vim 2> /dev/null
 else
     echo "Cannot create directory for neovim configuration ($XDG_CONFIG_HOME) "
     echo "Not a big problem, but this configuration will not work with neovim"
