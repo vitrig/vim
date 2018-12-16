@@ -34,7 +34,7 @@ set nowrap                      "Disable word wrap.
 set hidden                      "This allows buffer to become hidden when new file is created
 set cursorline                  "Highlights current line
 set colorcolumn=80              "Vertical ruler at 80
-set showbreak=↪\                "How to show end of line
+"set showbreak=↪\                "How to show end of line
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:. "How to show characters in set list mode
 
 "Coding style settings
@@ -223,6 +223,21 @@ map <c-p> :FZF<CR>
 "fzf.vim
 "=======
 nnoremap <silent> <expr> <c-g> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Ag ".expand("<cword>")."\<cr>"
+
+"Goyo
+"====
+function! s:goyo_enter()
+    set linebreak
+    set wrap
+endfunction
+
+function! s:goyo_leave()
+    set nolinebreak
+    set nowrap
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 "Language Server Protocol settings
 "=================================
