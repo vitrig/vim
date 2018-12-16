@@ -219,7 +219,10 @@ vnoremap \| :TagbarToggle<CR>
 "====================================
 set rtp+=$FZF_HOME
 map <c-p> :FZF<CR>
-nnoremap <silent> <expr> <c-p> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":FZF\<cr>"
+
+"fzf.vim
+"=======
+nnoremap <silent> <expr> <c-g> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Ag ".expand("<cword>")."\<cr>"
 
 "Language Server Protocol settings
 "=================================
