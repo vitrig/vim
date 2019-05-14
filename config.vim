@@ -224,29 +224,6 @@ map <c-p> :FZF<CR>
 "=======
 nnoremap <silent> <expr> <c-g> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Ag ".expand("<cword>")."\<cr>"
 
-"Goyo
-"====
-function! s:goyo_enter()
-    set linebreak
-    set wrap
-    nnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
-    nnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
-    vnoremap <expr> k (v:count == 0 ? 'gk' : 'k')
-    vnoremap <expr> j (v:count == 0 ? 'gj' : 'j')
-endfunction
-
-function! s:goyo_leave()
-    set nolinebreak
-    set nowrap
-    nunmap k
-    nunmap j
-    vunmap k
-    vunmap j
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 "Language Server Protocol settings
 "=================================
 if executable('clangd')
@@ -311,3 +288,8 @@ let g:rainbow_conf = {
     \       'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]\@<=<\ze[^<]/ end=/>/'] }
 	\}
     \} 
+
+"clang-format
+"============
+map <C-l> :pyf /usr/share/clang/clang-format.py<cr>
+
