@@ -19,7 +19,6 @@ function! lsp#ui#vim#diagnostics#handle_text_document_publish_diagnostics(server
     endif
     let s:diagnostics[l:uri][a:server_name] = a:data
 
-    call lsp#utils#echo_with_truncation('LSP: ' . l:uri . lsp#utils#get_buffer_uri())
     call lsp#ui#vim#signs#set(a:server_name, a:data)
 endfunction
 
