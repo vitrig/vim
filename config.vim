@@ -56,22 +56,34 @@ if has('autocmd')
 endif
 
 " Colorscheme settings
-colorscheme one "set colorscheme
+" ====================
+" Keep in ming that tmux tends to break things
+" ❯ cat ~/.tmux.conf
+" # Enable RGB colour if running in xterm(1)
+" set-option -sa terminal-overrides ",xterm*:Tc"
+"
+" Remember about airline theme below
+" Enable true color
+if exists('+termguicolors')
+  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+  let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+  set termguicolors
+endif
+colorscheme solarized8
 set background=dark
 highlight NonText ctermbg=NONE  "make background consistent
 highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
 highlight ColorColumn term=bold cterm=bold ctermbg=236
 highlight CursorLine term=bold cterm=bold ctermbg=236
-
 "completion menu text color fix
 highlight Pmenu ctermfg=8
-"highlight VertSplit term=NONE cterm=NONE ctermbg=8
+"Remove the ugly border that separates window
+highlight VertSplit term=NONE cterm=NONE ctermbg=NONE guibg=NONE
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 
 "NERDTree
 "========
@@ -114,7 +126,7 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_theme = 'onedark'
+let g:airline_theme = 'solarized'
 
 "Tabline enable
 let g:airline#extensions#tabline#enabled = 1 
