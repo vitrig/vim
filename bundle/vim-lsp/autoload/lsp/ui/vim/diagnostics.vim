@@ -1,16 +1,25 @@
 let s:is_win = has('win32') || has('win64')
 let s:diagnostics = {} " { uri: { 'server_name': response } }
 
+" Decode uri function is taken from vital framework: https://github.com/vim-jp/vital.vim
+" For it's license (NYSL), see http://www.kmonos.net/nysl/index.en.html
+function! s:decode_uri(uri) abort
+    let l:ret = substitute(a:uri, '+', ' ', 'g')
+    return substitute(l:ret, '%\(\x\x\)', '\=printf("%c", str2nr(submatch(1), 16))', 'g')
+endfunction
+
 function! lsp#ui#vim#diagnostics#handle_text_document_publish_diagnostics(server_name, data) abort
     if lsp#client#is_error(a:data['response'])
         return
     endif
     let l:uri = a:data['response']['params']['uri']
+    let l:uri = s:decode_uri(l:uri)
     if !has_key(s:diagnostics, l:uri)
         let s:diagnostics[l:uri] = {}
     endif
     let s:diagnostics[l:uri][a:server_name] = a:data
 
+    call lsp#utils#echo_with_truncation('LSP: ' . l:uri . lsp#utils#get_buffer_uri())
     call lsp#ui#vim#signs#set(a:server_name, a:data)
 endfunction
 
