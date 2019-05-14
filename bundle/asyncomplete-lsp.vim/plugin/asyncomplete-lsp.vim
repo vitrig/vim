@@ -14,13 +14,14 @@ function! s:server_initialized() abort
         if !has_key(s:servers, l:server_name)
             let l:init_capabilities = lsp#get_server_capabilities(l:server_name)
             if has_key(l:init_capabilities, 'completionProvider')
-                " TODO: support triggerCharacters
                 let l:name = s:generate_asyncomplete_name(l:server_name)
                 let l:source_opt = {
                     \ 'name': l:name,
                     \ 'completor': function('s:completor', [l:server_name]),
-                    \ 'refresh_pattern': '\(\k\+$\|\.$\|>$\|:$\)',
                     \ }
+                if type(l:init_capabilities['completionProvider']) == type({}) && has_key(l:init_capabilities['completionProvider'], 'triggerCharacters')
+                    let l:source_opt['triggers'] = { '*': l:init_capabilities['completionProvider']['triggerCharacters'] }
+                endif
                 let l:server = lsp#get_server_info(l:server_name)
                 if has_key(l:server, 'whitelist')
                     let l:source_opt['whitelist'] = l:server['whitelist']
@@ -33,8 +34,6 @@ function! s:server_initialized() abort
                 endif
                 call asyncomplete#register_source(l:source_opt)
                 let s:servers[l:server_name] = 1
-            else
-                let s:servers[l:server_name] = 0
             endif
         endif
     endfor
@@ -78,9 +77,12 @@ function! s:handle_completion(server_name, opt, ctx, data) abort
     if type(l:result) == type([])
         let l:items = l:result
         let l:incomplete = 0
-    else
+    elseif type(l:result) == type({})
         let l:items = l:result['items']
         let l:incomplete = l:result['isIncomplete']
+    else
+        let l:items = []
+        let l:incomplete = 0
     endif
 
     call map(l:items, 'lsp#omni#get_vim_completion_item(v:val)')
