@@ -26,7 +26,6 @@ set fileencoding=utf-8          "The encoding written to file.
 set splitright                  "To make vsplit put the new buffer on the right of the current buffer:
 set splitbelow                  "Similarly, to make split put the new buffer below the current buffer:
 set nohlsearch                  "disable hightlighting when searching
-set pastetoggle=<Leader>p		"map SPACE + P to set paste 
 filetype on                     "enable file type detection
 filetype plugin on              "enable loading the plugin files for specific file types with:
 filetype indent on              "enable loading the plugin files for specific file types with:
@@ -119,7 +118,7 @@ nnoremap . :bnext! <CR>
 vnoremap . :bnext! <CR>
 
 "Map combination of jk in insert mode
-"Esc i too far away!
+"Esc is too far away!
 inoremap jk <esc>
 
 "turns on vim-airline at startup
@@ -185,10 +184,6 @@ let g:EasyMotion_re_line_anywhere = '\v' .
 
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
-
-"Toggle relative numbering with Leader+r
-nnoremap <Leader>r :setl rnu!<CR> 
-
 "Make movement between
 "windows easier by using 
 "tab key and `` to switch windows
@@ -225,12 +220,6 @@ let g:switch_mapping = "-" "Map :Switch command to -. - is prev line by default 
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
 "highlighter		
 let php_var_selector_is_identifier = 1
-
-"tagbar
-"======
-nnoremap \| :TagbarToggle<CR>
-vnoremap \| :TagbarToggle<CR>
-
 
 "fzf: https://github.com/junegunn/fzf
 "====================================
