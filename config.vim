@@ -36,12 +36,15 @@ set cursorline                  "Highlights current line
 set colorcolumn=80              "Vertical ruler at 80
 "set showbreak=↪\                "How to show end of line
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:. "How to show characters in set list mode
+set ttyfast                     "Enable more smooth scrolling by sending more characters into terminal
+set lazyredraw                  "Buffer screen instead of updating all the time
 
 "Coding style settings
 set tabstop=4
 set shiftwidth=4
 set expandtab
 set cino=is,(s,m1,N-s,g0
+
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
@@ -69,8 +72,8 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-colorscheme solarized8
 set background=dark
+colorscheme solarized8
 highlight NonText ctermbg=NONE  "make background consistent
 highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
