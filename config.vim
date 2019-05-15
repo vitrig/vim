@@ -38,6 +38,8 @@ set colorcolumn=80              "Vertical ruler at 80
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•,extends:⟩,precedes:⟨,space:. "How to show characters in set list mode
 set ttyfast                     "Enable more smooth scrolling by sending more characters into terminal
 set lazyredraw                  "Buffer screen instead of updating all the time
+set signcolumn=yes              "Always show signcolumn - removed flickering effect
+autocmd FileType tagbar,nerdtree setlocal signcolumn=no "There are certain filetypes that are not supposed to have the column
 
 "Coding style settings
 set tabstop=4
@@ -261,6 +263,7 @@ let g:lsp_diagnostics_echo_cursor = 1   " enable echo under cursor when in norma
 let g:lsp_signs_error = {'text': '✗'}
 let g:lsp_signs_warning = {'text': '‼'}
 let g:lsp_signs_hint = {'text': '?'}
+let g:lsp_signs_information = {'text': '!'}
 
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
