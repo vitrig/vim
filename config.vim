@@ -44,8 +44,8 @@ autocmd FileType tagbar,nerdtree setlocal signcolumn=no "There are certain filet
 set tabstop=4
 set shiftwidth=4
 set expandtab
-set cino=is,(s,m1,N-s,g0
 
+set cino=is,(s,m1,N-s,g0
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
