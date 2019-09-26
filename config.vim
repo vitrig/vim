@@ -230,37 +230,6 @@ map <c-p> :FZF<CR>
 "=======
 nnoremap <silent> <expr> <c-g> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Ag ".expand("<cword>")."\<cr>"
 
-"Language Server Protocol settings
-"=================================
-if executable('clangd')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd',
-        \ 'cmd': {server_info->['clangd']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-elseif executable('clangd-6.0')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'clangd-6.0',
-        \ 'cmd': {server_info->['clangd-6.0']},
-        \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp'],
-        \ })
-endif
-
-let g:lsp_signs_enabled = 1             " enable signs
-let g:lsp_diagnostics_enabled = 1   " enable echo under cursor when in normal mode
-let g:lsp_diagnostics_echo_cursor = 1   " enable echo under cursor when in normal mode
-let g:lsp_signs_error = {'text': '✗'}
-let g:lsp_signs_warning = {'text': '‼'}
-let g:lsp_signs_hint = {'text': '?'}
-let g:lsp_signs_information = {'text': '!'}
-
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
-
-"To auto close preview window when completion is done.
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
-
 "Terminal
 "========
 tnoremap jk <C-\><C-n>
