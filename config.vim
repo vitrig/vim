@@ -1,3 +1,7 @@
+"Plugins
+"=======
+
+
 "Pathogen
 "========
 "Pathogen is used to allow instalation of custom plugins easily
