@@ -1,9 +1,12 @@
-let mapleader = " " "Map leader to space - it is more reachable
-
+"Pathogen
+"========
 "Pathogen is used to allow instalation of custom plugins easily
 execute pathogen#infect() 
 
-"Editor settings
+
+"Misc
+"====
+let mapleader = " "             "Map leader to space - it is more reachable
 set nocompatible                "Disable compatible mode
 set backspace=indent,eol,start
 set history=50		            "keep 50 lines of command line history
@@ -40,24 +43,27 @@ set lazyredraw                  "Buffer screen instead of updating all the time
 set signcolumn=yes              "Always show signcolumn - removed flickering effect
 autocmd FileType tagbar,nerdtree setlocal signcolumn=no "There are certain filetypes that are not supposed to have the column
 
-"Coding style settings
+
+"Coding style
+"============
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
 set cino=is,(s,m1,N-s,g0
 
+
+"Terminal and window
+"===================
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
   set mouse=a
 endif
-
-
 "disable beeping
 set noerrorbells visualbell t_vb=
 if has('autocmd')
     autocmd GUIEnter * set visualbell t_vb=
 endif
+
 
 " Colorscheme settings
 " ====================
@@ -91,44 +97,32 @@ highlight Pmenu ctermfg=8
 highlight VertSplit term=NONE cterm=NONE ctermbg=NONE guibg=NONE
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
 
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 "NERDTree
 "========
 let NERDTreeChDirMode=2
-
 "NERDTree window width in columns
 let g:NERDTreeWinSize=25 
-
 "Whenever NERDTree buffer gets closed
 "NERDTreeToggle fails with an error
 "This function fixes this problem
 function! g:WorkaroundNERDTreeToggle()
     try | NERDTreeToggle | catch | silent! NERDTree | endtry
 endfunction
-
 "Toggle NerdTree
 nnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
 vnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
 nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
 nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
+"Open NerdTree when vim starts
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-"Switch between buffers
-nnoremap , :bprev! <CR>
-vnoremap , :bprev! <CR>
 
-"Switch between buffers
-nnoremap . :bnext! <CR>
-vnoremap . :bnext! <CR>
-
-"Map combination of jk in insert mode
-"Esc is too far away!
-inoremap jk <esc>
-
+"Airline
+"=======
 "turns on vim-airline at startup
 set laststatus=2
-
 "Enable powerline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
@@ -136,26 +130,37 @@ let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_theme = 'github'
-
 "Tabline enable
 let g:airline#extensions#tabline#enabled = 1 
-
 "Only file names in tabs
 let g:airline#extensions#tabline#fnamemod = ':t' 
 
-"Map key to close buffers without
-"closing windows
-nnoremap <Leader>q :Bdelete<CR>
 
+"Quicksave
+"=========
 "Save file quickly
 nnoremap <Leader>w :w<CR>
 
+
+"Buffer management
+"=====================
 "Elegantly create new buffer in current
 "window like a decent modern text editor
 nnoremap <Leader>n :enew<CR>
+"Map key to close buffers without
+"closing windows
+nnoremap <Leader>q :Bdelete<CR>
+"Switch between buffers
+nnoremap , :bprev! <CR>
+vnoremap , :bprev! <CR>
+"Switch between buffers
+nnoremap . :bnext! <CR>
+vnoremap . :bnext! <CR>
 
+
+"EasyMotion
+"==========
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
 " Bi-directional find motion
 " Jump to anywhere you want with minimal keystrokes, with just one key binding.
 " `s{char}{label}`
@@ -164,21 +169,16 @@ nmap s <Plug>(easymotion-s)
 " `s{char}{char}{label}=LYP`
 " Need one more keystroke, but on average, it may be more comfortable.
 "nmap s <Plug>(easymotion-s2)
-
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
- 
 "We don't want vim-gitgutter to set up any mappings at all, because
 "the conflict wit easymotion-linebackward
 let g:gitgutter_map_keys = 0
-
 " JK motions: Line motions
 map <Leader>l <Plug>(easymotion-lineforward)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
-
-
 let g:EasyMotion_re_line_anywhere = '\v' .
             \       '(<.|^$)' . '|' .
             \       '(.>|^$)' . '|' .
@@ -186,9 +186,11 @@ let g:EasyMotion_re_line_anywhere = '\v' .
             \       '(_\zs.)' . '|' .
             \       '(#\zs.)' . '|' .
             \       "([]!\"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])"  
-
 let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
+
+"Window switch
+"============
 "Make movement between
 "windows easier by using 
 "tab key and `` to switch windows
@@ -197,47 +199,46 @@ map ` <C-w><C-h>
 map <Leader>o <C-w><C-w>
 map <Leader>u <C-w><C-h>
 
+
+"Movement
+"========
 nnoremap m .
 vnoremap <C-j> 15j
 nnoremap <C-j> 15j
 vnoremap <C-k> 15k
 nnoremap <C-k> 15k
+"Map combination of jk in insert mode
+"Esc is too far away!
+inoremap jk <esc>
 
-"Executing python code inline
-"============================
-"Execute selection and replace
-nnoremap <Leader>x :'<,'>Pyer<CR>
-vnoremap <Leader>x :'<,'>Pyer<CR>
-"Execute selection and append
-nnoremap <Leader>z :'<,'>Pyea<CR>
-vnoremap <Leader>z :'<,'>Pyea<CR>
 
-let g:UltiSnipsExpandTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-                                          " Do not set this to c-j it will break visual selection with fast movement
-let g:UltiSnipsJumpForwardTrigger="<c-l>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-                                          " Do not set this to c-j it will break visual selection with fast movement
-let g:UltiSnipsJumpBackwardTrigger="<c-h>" " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsEditSplit="vertical" " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsSnippetsDir=$VIMHOME."/UltiSnips"
-
+"Switch
+"======
 let g:switch_mapping = "-" "Map :Switch command to -. - is prev line by default (not very useful)
 
+
+"PHP
+"===
 "Enable syntax highlightig for $ sign in php, so that whole variable is		
 "highlighter		
 let php_var_selector_is_identifier = 1
+
 
 "fzf: https://github.com/junegunn/fzf
 "====================================
 set rtp+=$FZF_HOME
 map <c-p> :FZF<CR>
 
+
 "fzf.vim
 "=======
 nnoremap <silent> <expr> <c-g> (expand('%') =~ 'NERD_tree' ? "\<c-w>\<c-w>" : '').":Ag ".expand("<cword>")."\<cr>"
 
+
 "Terminal
 "========
 tnoremap jk <C-\><C-n>
+
 
 "Colored parentheses
 "===================
@@ -271,7 +272,7 @@ let g:rainbow_conf = {
 	\}
     \} 
 
+
 "clang-format
 "============
 map <C-l> :pyf /usr/share/clang/clang-format.py<cr>
-
