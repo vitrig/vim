@@ -75,7 +75,12 @@ if exists('+termguicolors')
 endif
 set background=light
 colorscheme github
-highlight NonText ctermbg=NONE  "make background consistent
+"Error Fix error highlight on white backgrounds
+"highlight SpellBad ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
+"highlight SpellCap ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
+highlight Error ctermfg=0 ctermbg=214 guibg=#ff5555 guifg=#000000
+"make background consistent
+highlight NonText ctermbg=NONE
 highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
 highlight ColorColumn term=bold cterm=bold ctermbg=236
