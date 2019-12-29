@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+DIR=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+
+plugins () {
+    ls bundle
+}
+
+awkscript () {
+    cat <<"EOF"
+
+    /^$/ {
+        num_of_blank_lines++
+    }
+
+    ! /^$/ {
+        num_of_blank_lines = 0
+    }
+
+    /"Plugins$/ {
+        plugins_found=1
+        next
+    }
+
+    plugins_found == 1 {
+        if (num_of_blank_lines >= 2) {
+            print_plugins()
+            plugins_found = 0
+        }
+        next
+    }
+
+    func print_plugins () {
+        print "\"Plugins"
+        print "\"======="
+        system("ls bundle | xargs -I{} echo '\"'{} ")
+        print ""
+        print ""
+    }
+
+    { print }
+EOF
+}
+
+config () {
+    awk "$(awkscript)" < config.vim
+}
+
+main () {
+    local contents="$(config)"
+    echo "$contents" > config.vim
+}
+
+main "$@"

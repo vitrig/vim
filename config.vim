@@ -1,5 +1,26 @@
 "Plugins
 "=======
+"auto-pairs
+"bufexplorer
+"fonts
+"fzf
+"fzf.vim
+"nerdtree
+"php.vim
+"rainbow
+"switch.vim
+"vim-airline
+"vim-airline-themes
+"vim-bbye
+"vim-colors-github
+"vim-easymotion
+"vim-fugitive
+"vim-gitgutter
+"vim-less
+"vim-mark
+"vim-python-pep8-indent
+"vim-solarized8
+"vim-twig
 
 
 "Pathogen
