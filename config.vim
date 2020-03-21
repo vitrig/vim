@@ -68,6 +68,9 @@ set lazyredraw                  "Buffer screen instead of updating all the time
 set signcolumn=yes              "Always show signcolumn - removed flickering effect
 autocmd FileType tagbar,nerdtree setlocal signcolumn=no "There are certain filetypes that are not supposed to have the column
 
+"disable title modification
+set notitle
+
 
 "Coding style
 "============
@@ -104,8 +107,9 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-set background=light
-colorscheme github
+set background=dark
+colorscheme solarized8
+let g:airline_theme = 'solarized'
 "Error Fix error highlight on white backgrounds
 "highlight SpellBad ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
 "highlight SpellCap ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
@@ -154,7 +158,6 @@ let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_theme = 'github'
 "Tabline enable
 let g:airline#extensions#tabline#enabled = 1 
 "Only file names in tabs
@@ -300,4 +303,4 @@ let g:rainbow_conf = {
 
 "clang-format
 "============
-map <C-l> :pyf /usr/share/clang/clang-format.py<cr>
+map <C-l> :py3f $VIMHOME/clang-format.py<cr>
