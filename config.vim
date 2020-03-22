@@ -304,3 +304,9 @@ let g:rainbow_conf = {
 "clang-format
 "============
 map <C-l> :py3f $VIMHOME/clang-format.py<cr>
+"map <C-l> :pyf /usr/share/clang/clang-format.py<cr>
+
+"Execute current line
+"====================
+nmap <C-x> :.!bash<cr>
+vmap <C-x> :!bash<cr>
