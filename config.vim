@@ -107,15 +107,20 @@ if exists('+termguicolors')
   let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
   set termguicolors
 endif
-set background=dark
-colorscheme solarized8
-let g:airline_theme = 'solarized'
+
+set background=light
+colorscheme github
+let g:airline_theme = 'github'
+"EndOfBuffer is color of ~ are in vim8
+highlight EndOfBuffer ctermbg=NONE guibg=NONE guifg=#ffffff
+"NonText is color of ~ are in vim7
+highlight NonText ctermbg=NONE guibg=NONE
+
 "Error Fix error highlight on white backgrounds
-"highlight SpellBad ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
-"highlight SpellCap ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
+highlight SpellBad ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
+highlight SpellCap ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
 highlight Error ctermfg=0 ctermbg=214 guibg=#ff5555 guifg=#000000
 "make background consistent
-highlight NonText ctermbg=NONE
 highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
 highlight ColorColumn term=bold cterm=bold ctermbg=236
