@@ -108,9 +108,9 @@ if exists('+termguicolors')
   set termguicolors
 endif
 
-set background=light
-colorscheme github
-let g:airline_theme = 'github'
+set background=dark
+colorscheme iceberg
+let g:airline_theme = 'iceberg'
 "EndOfBuffer is color of ~ are in vim8
 highlight EndOfBuffer ctermbg=NONE guibg=NONE guifg=#ffffff
 "NonText is color of ~ are in vim7
