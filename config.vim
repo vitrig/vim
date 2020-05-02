@@ -289,6 +289,15 @@ let g:rainbow_conf = {
 	\		'lisp': {
 	\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
 	\		},
+	\		'sh': {
+	\			'parentheses': ['start=/(/ end=/)/ fold',
+    \                           'start=/\[/ end=/\]/ fold',
+    \                           'start=/{/ end=/}/ fold',
+    \                           'start=/(/ end=/)/ fold containedin=shFunctionOne',
+    \                           'start=/\[/ end=/\]/ fold containedin=shFunctionOne',
+    \                           'start=/{/ end=/}/ fold containedin=shFunctionOne'
+    \                          ],
+	\		},
 	\		'vim': {
 	\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
 	\		},
@@ -304,7 +313,6 @@ let g:rainbow_conf = {
     \       'start=/\(\(\<operator\>\)\@<!<\)\&[a-zA-Z0-9_]\@<=<\ze[^<]/ end=/>/'] }
 	\}
     \} 
-
 
 "clang-format
 "============
