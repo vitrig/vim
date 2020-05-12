@@ -72,6 +72,30 @@ autocmd FileType tagbar,nerdtree setlocal signcolumn=no "There are certain filet
 set notitle
 
 
+"Clipboard settings
+"==================
+"
+"On Mac OS X and Windows, the * and + registers both point to the system
+"clipboard so unnamed and unnamedplus have the same effect: the unnamed
+"register is synchronized with the system clipboard.
+"On Linux, you have essentially two clipboards: one is pretty much the same as
+"in the other OSes (CtrlC and CtrlV in other programs, mapped to register +
+"in Vim), the other is the 'selection' clipboard (mapped to register * in Vim).
+"Using only unnamedplus on Linux, Windows and Mac OS X allows you to:
+"
+"   CtrlC in other programs and put in Vim with p on all three platforms,
+"   yank in Vim with y and CtrlV in other programs on all three platforms.
+"
+"If you also want to use Linux's "selection" clipboard, you will also need
+"unnamed.
+"
+"Set clipboard to both
+"set clipboard^=unnamed,unnamedplus
+"
+"Set clipboard to system clipboard
+set clipboard=unnamedplus
+
+
 "Coding style
 "============
 set tabstop=4
