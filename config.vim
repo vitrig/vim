@@ -5,6 +5,8 @@
 "fonts
 "fzf
 "fzf.vim
+"iceberg.vim
+"jinja.vim
 "nerdtree
 "php.vim
 "rainbow
