@@ -16,6 +16,17 @@ print('Telnet server -> Bye!')
 endpython
 endfunction
 
+function! CloseBuf(port)
+python3 << endpython
+port=int(vim.eval('a:port'))
+connections[port]["open_files"] -= 1
+
+if connections[port]["open_files"] <= 0:
+  connections[port]["connection"].close()
+  del connections[port]
+endpython
+endfunction
+
 function! OpenVimPyServer()
 python3 << endpython
 import vim
@@ -37,24 +48,36 @@ try:
 except vim.error as msg:
   print("Using default VimPyServer host: "+HOST)
 telnetServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-def start_client_connection( clientConnection ):
+
+connections={}
+
+def start_client_connection(clientConnection, address):
     try:
       exCommand = clientConnection.recv(4096)
       exCommand = str(exCommand, 'utf-8')
 
-      reply = b'Received ex-command: ' + exCommand.encode('utf-8')
-      vim.command('redir @a')
-      vim.command( exCommand.strip() )
-      vim.command('redir END')
-      result = vim.eval('@a')
-      clientConnection.send(reply)
-      clientConnection.send(b'Result:')
-      clientConnection.send(result.encode('utf-8'))
+      commands = exCommand.split("|")
+
+      for command in commands:
+        print(command)
+        reply = b'Received ex-command: ' + exCommand.encode('utf-8')
+        vim.command('redir @a')
+        vim.command(command.strip())
+        vim.command('au BufDelete <buffer> call CloseBuf({})'.format(address[1]))
+        vim.command('redir END')
+        result = vim.eval('@a')
+
+        connections[address[1]]["open_files"] += 1
+
+      #clientConnection.send(reply)
+      #clientConnection.send(b'Result:')
+      #clientConnection.send(result.encode('utf-8'))
     except Exception as e:
       print('Error on client VIM-PyServer: ' + str(e))
 
     try:
-      clientConnection.close()
+      #clientConnection.close()
+      pass
     except Exception:
       sys.exc_clear()
 
@@ -65,7 +88,11 @@ def start_server():
       print('Connection received from ' + address[0] + ':' + str(address[1]))
       # clientConnection.send('VIM telnet server. Received data will be\n')
       # clientConnection.send('interpreted as ex-command. Be cautious.\n')
-      start_new_thread( start_client_connection ,( clientConnection, ) )
+      connections[address[1]] = {
+        "connection": clientConnection,
+        "open_files": 0
+      }
+      start_new_thread( start_client_connection ,( clientConnection, address ) )
     except Exception as e:
       print('Error on client VIM-PyServer: ' + str(e))
       sys.exc_clear()
@@ -130,15 +157,15 @@ endfunction
 if !has('python3')
 	echo "No python detected. VimPyServer will not start."
 else
-	if !exists("g:VimPyServer_autostart")
-		autocmd VimEnter * call OpenVimPyServer()
-	else
-		if g:VimPyServer_autostart != 0
-			autocmd VimEnter * call OpenVimPyServer()
-		else
-			echo "VimPyServer not started"
-		end
-	end
+	"if !exists("g:VimPyServer_autostart")
+	"	autocmd VimEnter * call OpenVimPyServer()
+	"else
+	"	if g:VimPyServer_autostart != 0
+	"		autocmd VimEnter * call OpenVimPyServer()
+	"	else
+	"		echo "VimPyServer not started"
+	"	end
+	"end
 end
 
 function! g:CheckIfVimperatorVimPyServer()
