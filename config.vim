@@ -170,10 +170,10 @@ function! g:WorkaroundNERDTreeToggle()
     try | NERDTreeToggle | catch | silent! NERDTree | endtry
 endfunction
 "Toggle NerdTree
-nnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
-vnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
-nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
-nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
+"nnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
+"vnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
+"nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
+"nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
 "Open NerdTree when vim starts
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
