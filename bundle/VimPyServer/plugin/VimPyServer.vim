@@ -54,6 +54,7 @@ try:
 except vim.error as msg:
   print("Using default VimPyServer host: "+HOST)
 telnetServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+telnetServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
 connections={}
 
@@ -79,6 +80,8 @@ def start_client_connection(clientConnection, uid):
           total = ""
 
       for f in files:
+        if not f.strip():
+            continue
         reply = b'Received ex-command: ' + exCommand.encode('utf-8')
         vim.command('redir @a')
         vim.command(f"e {f.strip()}")
