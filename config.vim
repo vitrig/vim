@@ -9,7 +9,6 @@
 "jinja.vim
 "nerdtree
 "php.vim
-"rainbow
 "switch.vim
 "vim-airline
 "vim-airline-themes
@@ -20,6 +19,7 @@
 "vim-gitgutter
 "vim-less
 "vim-mark
+"VimPyServer
 "vim-python-pep8-indent
 "vim-solarized8
 "vim-twig
