@@ -43,16 +43,18 @@ HOST='127.0.0.1'
 PORT=9879
 try:
   env_Port = vim.eval("g:VimPyServer_port")
-  print("Using "+ str(env_Port) +" as VimPyServer port.")
+  #print("Using "+ str(env_Port) +" as VimPyServer port.")
   PORT=int(env_Port)
 except vim.error as msg:
-  print("Using default VimPyServer port: "+str(PORT))
+  #print("Using default VimPyServer port: "+str(PORT))
+  pass
 try:
   env_Host = vim.eval("g:VimPyServer_host")
-  print("Using "+ env_Host + " as VimPyServer host.")
+  #print("Using "+ env_Host + " as VimPyServer host.")
   HOST=env_Host
 except vim.error as msg:
-  print("Using default VimPyServer host: "+HOST)
+  #print("Using default VimPyServer host: "+HOST)
+  pass
 telnetServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 telnetServer.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 
@@ -131,13 +133,13 @@ try:
   #Only 1 connection allowed.
   telnetServer.listen(1)
   start_new_thread( start_server  ,() )
-  print('*** Vim-PyServer created on ' + HOST + ', port ' + str(PORT) + ' ***' )
-  print('Be cautious, as ANY data received is treated as ex-mode command!' )
-  print('Also, starting and ending carriage return or line feed will be deleted')
-  print('For example, running from another shell:')
-  print('    echo "e ~/.bashrc" |nc localhost 9876')
-  print('will be interpreted on the VIM client as:')
-  print('    :e ~/.bashrc')
+  #print('*** Vim-PyServer created on ' + HOST + ', port ' + str(PORT) + ' ***' )
+  #print('Be cautious, as ANY data received is treated as ex-mode command!' )
+  #print('Also, starting and ending carriage return or line feed will be deleted')
+  #print('For example, running from another shell:')
+  #print('    echo "e ~/.bashrc" |nc localhost 9876')
+  #print('will be interpreted on the VIM client as:')
+  #print('    :e ~/.bashrc')
 except Exception as e:
   print(('VIM-PyServer exists! (another vim?) on: '+HOST+', port '+str(PORT)))
   print('Error: '+str(e) )
@@ -185,30 +187,10 @@ endfunction
 
 if !has('python3')
 	echo "No python detected. VimPyServer will not start."
-else
-	"if !exists("g:VimPyServer_autostart")
-	"	autocmd VimEnter * call OpenVimPyServer()
-	"else
-	"	if g:VimPyServer_autostart != 0
-	"		autocmd VimEnter * call OpenVimPyServer()
-	"	else
-	"		echo "VimPyServer not started"
-	"	end
-	"end
 end
-
-function! g:CheckIfVimperatorVimPyServer()
-	if exists("g:vimperatorVimPyServer")
-		if g:vimperatorVimPyServer>=1
-			call VimPyServerMessageToClient('End Vimperator mode\n')
-			let g:vimperatorVimPyServer=0
-		endif
-	endif 
-endfunction
 
 if !exists("autocommands_VimPyServer")
 	let autocommands_VimPyServer = 1
-	au BufWritePost * call g:CheckIfVimperatorVimPyServer()
     au VimLeave * call CloseVimPyServer()
 endif
 
