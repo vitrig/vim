@@ -10,26 +10,32 @@
 
 function! CloseVimPyServer()
 python3 << endpython
-print('Closing telnet server...')
-telnetServer.shutdown(socket.SHUT_RDWR)
-print('Telnet server -> Bye!')
+if telnetServer:
+    print('Closing telnet server...')
+    telnetServer.shutdown(socket.SHUT_RDWR)
+    print('Telnet server -> Bye!')
 endpython
 endfunction
 
-function! CloseBuf(port)
+function! CloseBuf(uid)
 python3 << endpython
-port=int(vim.eval('a:port'))
-connections[port]["open_files"] -= 1
+uid=vim.eval('a:uid')
+connections[uid]["open_files"] -= 1
 
-if connections[port]["open_files"] <= 0:
-  connections[port]["connection"].close()
-  del connections[port]
+if connections[uid]["open_files"] <= 0:
+  connections[uid]["connection"].close()
+  del connections[uid]
+  vim.command('redir @a')
+  vim.command('autocmd! grp{}'.format(uid))
+  vim.command('redir END')
+  result = vim.eval('@a')
 endpython
 endfunction
 
 function! OpenVimPyServer()
 python3 << endpython
 import vim
+import uuid
 import socket
 import sys
 from _thread import *
@@ -51,23 +57,44 @@ telnetServer = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
 connections={}
 
-def start_client_connection(clientConnection, address):
+def start_client_connection(clientConnection, uid):
+    blocking = False
     try:
       exCommand = clientConnection.recv(4096)
       exCommand = str(exCommand, 'utf-8')
 
-      commands = exCommand.split("|")
+      if exCommand.startswith("blocking "):
+          exCommand = exCommand[len("blocking "):]
+          blocking = True
 
-      for command in commands:
-        print(command)
+      tokens = exCommand.split(",")
+
+      total = ""
+      files = []
+      for t in tokens:
+          if t.startswith("+"):
+              total += t
+              continue
+          files.append(total + " " + t)
+          total = ""
+
+      for f in files:
         reply = b'Received ex-command: ' + exCommand.encode('utf-8')
         vim.command('redir @a')
-        vim.command(command.strip())
-        vim.command('au BufDelete <buffer> call CloseBuf({})'.format(address[1]))
+        vim.command(f"e {f.strip()}")
+        if blocking:
+          vim.command('augroup grp{}'.format(uid))
+          vim.command('autocmd BufDelete <buffer> call CloseBuf("{}")'.format(uid))
+          vim.command('augroup END')
         vim.command('redir END')
         result = vim.eval('@a')
 
-        connections[address[1]]["open_files"] += 1
+        connections[uid]["open_files"] += 1
+
+      vim.command('redir @a')
+      vim.command('redraw')
+      vim.command('redir END')
+      result = vim.eval('@a')
 
       #clientConnection.send(reply)
       #clientConnection.send(b'Result:')
@@ -76,10 +103,10 @@ def start_client_connection(clientConnection, address):
       print('Error on client VIM-PyServer: ' + str(e))
 
     try:
-      #clientConnection.close()
-      pass
+      if not blocking:
+        clientConnection.close()
     except Exception:
-      sys.exc_clear()
+      pass
 
 def start_server():
   while True:
@@ -88,14 +115,14 @@ def start_server():
       print('Connection received from ' + address[0] + ':' + str(address[1]))
       # clientConnection.send('VIM telnet server. Received data will be\n')
       # clientConnection.send('interpreted as ex-command. Be cautious.\n')
-      connections[address[1]] = {
+      uid = str(uuid.uuid4())
+      connections[uid] = {
         "connection": clientConnection,
         "open_files": 0
       }
-      start_new_thread( start_client_connection ,( clientConnection, address ) )
+      start_new_thread( start_client_connection ,( clientConnection, uid) )
     except Exception as e:
-      print('Error on client VIM-PyServer: ' + str(e))
-      sys.exc_clear()
+        pass
 try:
   telnetServer.bind((HOST, PORT))
   #Only 1 connection allowed.
@@ -111,7 +138,6 @@ try:
 except Exception as e:
   print(('VIM-PyServer exists! (another vim?) on: '+HOST+', port '+str(PORT)))
   print('Error: '+str(e) )
-  sys.exc_clear()
 endpython
 endfunction
 
@@ -180,5 +206,6 @@ endfunction
 if !exists("autocommands_VimPyServer")
 	let autocommands_VimPyServer = 1
 	au BufWritePost * call g:CheckIfVimperatorVimPyServer()
+    au VimLeave * call CloseVimPyServer()
 endif
 
