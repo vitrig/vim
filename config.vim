@@ -92,10 +92,10 @@ set notitle
 "unnamed.
 "
 "Set clipboard to both
-"set clipboard^=unnamed,unnamedplus
+set clipboard^=unnamed,unnamedplus
 "
 "Set clipboard to system clipboard
-set clipboard=unnamedplus
+"set clipboard=unnamedplus
 
 
 "Coding style
