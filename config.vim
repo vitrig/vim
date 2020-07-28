@@ -240,10 +240,10 @@ let g:EasyMotion_smartcase = 1
 "the conflict wit easymotion-linebackward
 let g:gitgutter_map_keys = 0
 " JK motions: Line motions
-map <Leader>l <Plug>(easymotion-lineforward)
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-map <Leader>h <Plug>(easymotion-linebackward)
+map l <Plug>(easymotion-lineforward)
+map j <Plug>(easymotion-j)
+map k <Plug>(easymotion-k)
+map h <Plug>(easymotion-linebackward)
 let g:EasyMotion_re_line_anywhere = '\v' .
             \       '(<.|^$)' . '|' .
             \       '(.>|^$)' . '|' .
