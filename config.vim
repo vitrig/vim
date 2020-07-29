@@ -156,7 +156,8 @@ highlight Error ctermfg=0 ctermbg=214 guibg=#ff5555 guifg=#000000
 highlight SpecialKey ctermfg=8
 highlight CursorLine cterm=NONE "remove underline from CursorLine
 highlight ColorColumn term=bold cterm=bold ctermbg=236
-highlight CursorLine term=bold cterm=bold ctermbg=236
+autocmd InsertEnter * highlight CursorLine term=bold cterm=bold ctermbg=25 guibg=#2e3142
+autocmd InsertLeave * highlight CursorLine term=bold cterm=bold ctermbg=236 guibg=#1e2132
 "completion menu text color fix
 highlight Pmenu ctermfg=8
 "Remove the ugly border that separates window
