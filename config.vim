@@ -223,7 +223,6 @@ vnoremap , :bprev! <CR>
 nnoremap . :bnext! <CR>
 vnoremap . :bnext! <CR>
 
-
 "EasyMotion
 "==========
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
