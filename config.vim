@@ -30,7 +30,6 @@
 "Pathogen is used to allow instalation of custom plugins easily
 execute pathogen#infect() 
 
-
 "Misc
 "====
 let mapleader = " "             "Map leader to space - it is more reachable
@@ -48,7 +47,7 @@ set guioptions-=m               "remove menu bar from gui version of vim
 set guioptions-=T               "remove toolbar from gui version of vim
 set guioptions-=r               "remove right-hand scroll bar from gui version of vim
 set guioptions-=L               "remove left-hand scroll bar from gui version of vim
-set guicursor=                  "prevent NeoVIM from changing the cursor
+"set guicursor=                  "prevent NeoVIM from changing the cursor
 "set number                      "display line numbers
 set rnu                         "show relative line numbers
 syntax enable                   "enable syntax highlighting
