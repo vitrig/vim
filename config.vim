@@ -48,8 +48,9 @@ set guioptions-=m               "remove menu bar from gui version of vim
 set guioptions-=T               "remove toolbar from gui version of vim
 set guioptions-=r               "remove right-hand scroll bar from gui version of vim
 set guioptions-=L               "remove left-hand scroll bar from gui version of vim
-"set guicursor=                  "prevent NeoVIM from changing the cursor
-set number                      "display line numbers
+set guicursor=                  "prevent NeoVIM from changing the cursor
+"set number                      "display line numbers
+set rnu                         "show relative line numbers
 syntax enable                   "enable syntax highlighting
 set encoding=utf-8              "The encoding displayed.
 set fileencoding=utf-8          "The encoding written to file. 
@@ -223,7 +224,6 @@ nnoremap <C-k> 15k
 "Map combination of jk in insert mode
 "Esc is too far away!
 inoremap jk <esc>
-set rnu "Get rid of easymotion in favor of rnu
 nnoremap ' ,
 
 "Switch
