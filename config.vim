@@ -48,7 +48,7 @@ set guioptions-=m               "remove menu bar from gui version of vim
 set guioptions-=T               "remove toolbar from gui version of vim
 set guioptions-=r               "remove right-hand scroll bar from gui version of vim
 set guioptions-=L               "remove left-hand scroll bar from gui version of vim
-set guicursor=                  "prevent NeoVIM from changing the cursor
+"set guicursor=                  "prevent NeoVIM from changing the cursor
 set number                      "display line numbers
 syntax enable                   "enable syntax highlighting
 set encoding=utf-8              "The encoding displayed.
@@ -78,7 +78,6 @@ set notitle
 "Exuberant Ctags
 "===============
 set tags=tags,./tags;
-
 
 "Clipboard settings
 "==================
@@ -158,33 +157,11 @@ highlight CursorLine cterm=NONE "remove underline from CursorLine
 highlight ColorColumn term=bold cterm=bold ctermbg=236
 autocmd InsertEnter * set nocursorline
 autocmd InsertLeave * set cursorline
-"completion menu text color fix
+"completion menu text holor fix
 highlight Pmenu ctermfg=8
 "Remove the ugly border that separates window
 highlight VertSplit term=NONE cterm=NONE ctermbg=NONE guibg=NONE
 set fillchars=vert:\            "remove ugly vertical line characters '|' which are visible on some colorschemes
-
-
-"NERDTree
-"========
-let NERDTreeChDirMode=2
-"NERDTree window width in columns
-let g:NERDTreeWinSize=25 
-"Whenever NERDTree buffer gets closed
-"NERDTreeToggle fails with an error
-"This function fixes this problem
-function! g:WorkaroundNERDTreeToggle()
-    try | NERDTreeToggle | catch | silent! NERDTree | endtry
-endfunction
-"Toggle NerdTree
-"nnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
-"vnoremap \ :call g:WorkaroundNERDTreeToggle()<CR>
-"nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
-"nnoremap <Leader>y :call g:WorkaroundNERDTreeToggle()<CR>
-"Open NerdTree when vim starts
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-
 
 "Airline
 "=======
@@ -205,7 +182,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 "Quicksave
 "=========
 "Save file quickly
-nnoremap \ :w<CR>
+noremap \ :w<CR>
 
 
 "Buffer management
@@ -223,35 +200,6 @@ vnoremap , :bprev! <CR>
 nnoremap . :bnext! <CR>
 vnoremap . :bnext! <CR>
 
-"EasyMotion
-"==========
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Bi-directional find motion
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-nmap s <Plug>(easymotion-s)
-" or
-" `s{char}{char}{label}=LYP`
-" Need one more keystroke, but on average, it may be more comfortable.
-"nmap s <Plug>(easymotion-s2)
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-"We don't want vim-gitgutter to set up any mappings at all, because
-"the conflict wit easymotion-linebackward
-let g:gitgutter_map_keys = 0
-" JK motions: Line motions
-map l <Plug>(easymotion-lineforward)
-map j <Plug>(easymotion-j)
-map k <Plug>(easymotion-k)
-map h <Plug>(easymotion-linebackward)
-let g:EasyMotion_re_line_anywhere = '\v' .
-            \       '(<.|^$)' . '|' .
-            \       '(.>|^$)' . '|' .
-            \       '(\l)\zs(\u)' . '|' .
-            \       '(_\zs.)' . '|' .
-            \       '(#\zs.)' . '|' .
-            \       "([]!\"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])"  
-let g:EasyMotion_startofline = 0 " keep cursor colum when JK motion
 
 
 "Window switch
@@ -275,7 +223,8 @@ nnoremap <C-k> 15k
 "Map combination of jk in insert mode
 "Esc is too far away!
 inoremap jk <esc>
-
+set rnu "Get rid of easymotion in favor of rnu
+nnoremap ' ,
 
 "Switch
 "======
