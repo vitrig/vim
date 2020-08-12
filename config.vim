@@ -71,9 +71,10 @@ set signcolumn=yes              "Always show signcolumn - removed flickering eff
 set wildmenu                    "Display all matching files when we tab complete
 set path+=**                    "Search down into subfolders
 autocmd FileType tagbar,nerdtree setlocal signcolumn=no "There are certain filetypes that are not supposed to have the column
-
+set scrolloff=5                 "Always show 5 lines off the screen
 "disable title modification
 set notitle
+set shortmess+=I "Remove vim intro message
 
 "Exuberant Ctags
 "===============
@@ -166,7 +167,8 @@ set fillchars=vert:\            "remove ugly vertical line characters '|' which 
 "Airline
 "=======
 "turns on vim-airline at startup
-set laststatus=2
+"set laststatus=2
+set laststatus=0
 "Enable powerline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
@@ -182,7 +184,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 "Quicksave
 "=========
 "Save file quickly
-noremap \ :w<CR>
+noremap s :w<CR>
 
 
 "Buffer management
