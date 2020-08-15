@@ -144,9 +144,9 @@ set background=dark
 colorscheme iceberg
 let g:airline_theme = 'iceberg'
 "EndOfBuffer is color of ~ are in vim8
-highlight EndOfBuffer ctermbg=NONE guibg=NONE guifg=#161821
+"highlight EndOfBuffer ctermbg=NONE guibg=NONE guifg=#161821
 "NonText is color of ~ are in vim7
-highlight NonText ctermbg=NONE guibg=NONE
+"highlight NonText ctermbg=NONE guibg=NONE
 
 "Error Fix error highlight on white backgrounds
 highlight SpellBad ctermfg=0 ctermbg=214 guibg=#ffdddd guifg=#000000
