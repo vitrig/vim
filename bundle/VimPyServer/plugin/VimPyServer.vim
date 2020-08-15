@@ -7,6 +7,9 @@
 " Website: http://github.com/degyves/VimPyServer
 " Version: 0.2.1
 " ===========================
+"
+
+if !has('nvim')
 
 function! CloseVimPyServer()
 python3 << endpython
@@ -194,3 +197,4 @@ if !exists("autocommands_VimPyServer")
     au VimLeave * call CloseVimPyServer()
 endif
 
+endif
