@@ -1,28 +1,15 @@
 "Plugins
 "=======
 "auto-pairs
-"bufexplorer
 "fonts
-"fzf
-"fzf.vim
 "iceberg.vim
 "jinja.vim
-"nerdtree
 "php.vim
 "switch.vim
-"vim-airline
-"vim-airline-themes
-"vim-bbye
-"vim-colors-github
-"vim-easymotion
-"vim-fugitive
 "vim-gitgutter
-"vim-less
 "vim-mark
 "VimPyServer
 "vim-python-pep8-indent
-"vim-solarized8
-"vim-twig
 
 
 "Pathogen
