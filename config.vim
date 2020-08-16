@@ -196,7 +196,7 @@ noremap s :w<CR>
 nnoremap <Leader>n :enew<CR>
 "Map key to close buffers without
 "closing windows
-nnoremap <Leader>q :Bdelete<CR>
+nnoremap <Leader>q :bdelete<CR>
 "Switch between buffers
 nnoremap , :bprev! <CR>
 vnoremap , :bprev! <CR>
