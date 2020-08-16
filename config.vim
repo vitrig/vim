@@ -168,7 +168,7 @@ set fillchars=vert:\            "remove ugly vertical line characters '|' which 
 "=======
 "turns on vim-airline at startup
 set laststatus=2
-nnoremap \ :ls<CR>:buffer<Space>
+"set laststatus=0
 "Enable powerline fonts
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
@@ -179,6 +179,7 @@ let g:airline_right_alt_sep = ''
 let g:airline#extensions#tabline#enabled = 0 
 "Only file names in tabs
 let g:airline#extensions#tabline#fnamemod = ':t' 
+nnoremap \ :ls<CR>:buffer<Space>
 
 
 
