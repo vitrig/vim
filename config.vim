@@ -1,7 +1,6 @@
 "Plugins
 "=======
 "auto-pairs
-"fonts
 "iceberg.vim
 "jinja.vim
 "php.vim
