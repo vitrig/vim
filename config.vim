@@ -183,14 +183,6 @@ nnoremap <Leader>n :enew<CR>
 "Map key to close buffers without
 "closing windows
 nnoremap <Leader>q :bdelete<CR>
-"Switch between buffers
-nnoremap , :bprev! <CR>
-vnoremap , :bprev! <CR>
-"Switch between buffers
-nnoremap . :bnext! <CR>
-vnoremap . :bnext! <CR>
-
-
 
 "Window switch
 "============
@@ -213,7 +205,6 @@ nnoremap <C-k> 15k
 "Map combination of jk in insert mode
 "Esc is too far away!
 inoremap jk <esc>
-nnoremap ' ,
 
 "Switch
 "======
