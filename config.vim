@@ -165,9 +165,13 @@ let g:airline_right_alt_sep = ''
 let g:airline#extensions#tabline#enabled = 0 
 "Only file names in tabs
 let g:airline#extensions#tabline#fnamemod = ':t' 
+
+"Buffer switching
 nnoremap \ :ls<CR>:buffer<Space>
 
-
+"Transformer manager
+nnoremap . :!t<CR>:.!t<Space>
+vnoremap . :<BS><BS><BS><BS><BS>!t<CR>:'<,'>!t<Space>
 
 "Quicksave
 "=========
