@@ -246,3 +246,8 @@ map <C-l> :py3f $VIMHOME/clang-format.py<cr>
 "====================
 nmap <C-x> :.!bash<cr>
 vmap <C-x> :!bash<cr>
+
+"Fix highlight for compound literals in C
+"========================================
+let c_no_bracket_error=1
+let c_no_curly_error=1
