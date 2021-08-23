@@ -3,3 +3,4 @@ bundle/YCM-Generator/
 bundle/YouCompleteMe/
 init.vim
 
+.netrwhist
