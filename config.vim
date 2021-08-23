@@ -171,7 +171,7 @@ nnoremap \ :ls<CR>:buffer<Space>
 
 "Transformer manager
 nnoremap . :echo system("t lvim")<CR>:.!t t<Space>
-vnoremap . :<BS><BS><BS><BS><BS>!t lvim<CR>:'<,'>!t t<Space>
+vnoremap . :<BS><BS><BS><BS><BS>echo system("t lvim")<CR>:'<,'>!t t<Space>
 
 "Quicksave
 "=========
