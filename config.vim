@@ -170,7 +170,7 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 nnoremap \ :ls<CR>:buffer<Space>
 
 "Transformer manager
-nnoremap . :!t lvim<CR>:.!t t<Space>
+nnoremap . :echo system("t lvim")<CR>:.!t t<Space>
 vnoremap . :<BS><BS><BS><BS><BS>!t lvim<CR>:'<,'>!t t<Space>
 
 "Quicksave
