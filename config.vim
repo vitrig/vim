@@ -244,8 +244,8 @@ map <C-l> :py3f $VIMHOME/clang-format.py<cr>
 
 "Execute current line
 "====================
-nmap <C-x> :.!bash<cr>
-vmap <C-x> :!bash<cr>
+nmap <C-x> :.!$VIMHOME/bashexec.sh<cr>
+vmap <C-x> :!$VIMHOME/bashexec.sh<cr>
 
 "Fix highlight for compound literals in C
 "========================================
